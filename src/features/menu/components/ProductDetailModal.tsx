@@ -29,10 +29,12 @@ const ProductDetailModal = ({
       >
         {/* Close Button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 rounded-full bg-stone-800/80 p-2 text-stone-400 backdrop-blur-sm transition-all hover:bg-stone-700 hover:text-white"
+          className="absolute top-4 right-4 z-[130] flex h-10 w-10 items-center justify-center rounded-full bg-stone-800/90 text-stone-300 backdrop-blur-sm transition-all active:scale-90 active:bg-stone-700 active:text-white"
+          aria-label="Close modal"
         >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -96,10 +98,11 @@ const ProductDetailModal = ({
                 <span className="font-serif text-2xl font-bold text-yellow-400">{formatCurrency(item.price)}</span>
               </div>
 
-              {/* Close Button */}
+              {/* Close Button Bottom */}
               <button
+                type="button"
                 onClick={onClose}
-                className="w-full rounded-xl border border-stone-800 bg-stone-800/50 py-4 text-xs font-bold tracking-[0.2em] text-stone-400 uppercase transition-all hover:bg-stone-700 hover:text-white"
+                className="w-full rounded-xl border border-stone-800 bg-stone-800/50 py-4 text-xs font-bold tracking-[0.2em] text-stone-400 uppercase transition-all active:bg-stone-700 active:text-white"
               >
                 Tutup
               </button>

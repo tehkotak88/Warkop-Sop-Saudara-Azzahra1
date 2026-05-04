@@ -58,14 +58,16 @@ const Header = ({ onNavigate }: HeaderProps) => {
 
           {/* Mobile Toggle */}
           <button
+            type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 md:hidden"
+            className="relative z-[60] flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all active:scale-95 md:hidden"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
               />
             </svg>
@@ -74,31 +76,40 @@ const Header = ({ onNavigate }: HeaderProps) => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div
-            className="mt-3 overflow-hidden rounded-2xl border border-red-900 bg-red-950/95 backdrop-blur-xl"
-            style={{ animation: 'slideDown 0.3s ease' }}
-          >
-            <nav className="p-3">
-              {HOME_NAV_LINKS.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => {
-                    onNavigate(link.id);
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full rounded-xl px-5 py-3.5 text-left text-sm font-bold text-white/80 transition-all hover:bg-red-900/50 hover:text-white"
-                >
-                  {link.label}
-                </button>
-              ))}
-            </nav>
-          </div>
+          <>
+            {/* Backdrop for mobile menu */}
+            <div 
+              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            
+            <div
+              className="relative z-50 mt-3 overflow-hidden rounded-2xl border border-red-900 bg-red-950/95 shadow-2xl backdrop-blur-xl md:hidden"
+              style={{ animation: 'slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
+            >
+              <nav className="p-3">
+                {HOME_NAV_LINKS.map((link) => (
+                  <button
+                    key={link.id}
+                    type="button"
+                    onClick={() => {
+                      onNavigate(link.id);
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full rounded-xl px-5 py-4 text-left text-sm font-bold text-white transition-all hover:bg-red-900/50 active:bg-red-900/80"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </nav>
+            </div>
+          </>
         )}
       </div>
 
       <style>{`
         @keyframes slideDown {
-          from { opacity: 0; transform: translateY(-8px); }
+          from { opacity: 0; transform: translateY(-10px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
