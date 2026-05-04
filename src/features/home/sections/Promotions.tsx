@@ -19,16 +19,17 @@ const Promotions = ({ onNavigate }: PromotionsProps) => {
       className="relative overflow-hidden bg-stone-950 py-32"
     >
       <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
-        <div className="animate-float-gentle absolute -top-[20%] left-[20%] h-[800px] w-[800px] rounded-full bg-amber-900/10 blur-[150px]" />
+        <div className="animate-float-gentle absolute -top-[20%] left-[20%] h-[800px] w-[800px] rounded-full bg-red-900/10 blur-[150px]" />
+        <div className="animate-float-gentle absolute -bottom-[10%] right-[10%] h-[600px] w-[600px] rounded-full bg-yellow-900/8 blur-[120px]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-6 lg:px-12">
         <div className="mb-20 text-center animate-blur-in">
-          <span className="mb-4 block text-xs font-bold tracking-[0.4em] text-amber-500 uppercase">
+          <span className="mb-4 block text-xs font-bold tracking-[0.4em] text-yellow-400 uppercase">
             Limited Offers
           </span>
           <h2 className="font-serif text-5xl font-bold leading-tight text-white md:text-7xl">
-            Curated <span className="text-stone-600 italic">Promotions</span>
+            Curated <span className="text-red-800/60 italic">Promotions</span>
           </h2>
         </div>
 
@@ -54,10 +55,10 @@ const Promotions = ({ onNavigate }: PromotionsProps) => {
 
               <div className="absolute inset-x-6 bottom-6 rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-md transition-transform duration-500 group-hover:-translate-y-[10px]">
                 <div className="mb-4 flex items-start justify-between">
-                  <h3 className="font-serif text-3xl font-bold text-white transition-colors group-hover:text-amber-200">
+                  <h3 className="font-serif text-3xl font-bold text-white transition-colors group-hover:text-yellow-200">
                     {promo.title}
                   </h3>
-                  <span className="rounded-full bg-amber-600 px-3 py-1 text-[10px] font-bold tracking-widest text-white uppercase">
+                  <span className="rounded-full bg-red-800 px-3 py-1 text-[10px] font-bold tracking-widest text-white uppercase">
                     Promo
                   </span>
                 </div>
@@ -67,11 +68,11 @@ const Promotions = ({ onNavigate }: PromotionsProps) => {
                 </p>
 
                 <div className="flex items-center gap-3">
-                  <span className="border-b border-white/20 pb-1 text-xs font-bold tracking-widest text-white/60 uppercase transition-all group-hover:border-amber-400 group-hover:text-amber-400">
+                  <span className="border-b border-white/20 pb-1 text-xs font-bold tracking-widest text-white/60 uppercase transition-all group-hover:border-yellow-400 group-hover:text-yellow-400">
                     Claim Offer
                   </span>
                   <svg
-                    className="h-4 w-4 text-white/60 transition-transform duration-300 group-hover:translate-x-2"
+                    className="h-4 w-4 text-white/60 transition-transform duration-300 group-hover:translate-x-2 group-hover:text-yellow-400"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

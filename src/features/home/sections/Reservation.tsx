@@ -45,18 +45,18 @@ const Reservation = () => {
     <section id="reservasi" className="relative overflow-hidden bg-[#fffaf5] py-32">
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-20 -right-40 h-[500px] w-[500px] rounded-full bg-amber-100/60 blur-[150px]" />
-        <div className="absolute -bottom-20 -left-40 h-[400px] w-[400px] rounded-full bg-stone-200/50 blur-[120px]" />
+        <div className="absolute top-20 -right-40 h-[500px] w-[500px] rounded-full bg-red-100/40 blur-[150px]" />
+        <div className="absolute -bottom-20 -left-40 h-[400px] w-[400px] rounded-full bg-yellow-100/40 blur-[120px]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-6 lg:px-12">
         <div className="mb-20 text-center">
-          <span className="mb-4 inline-block text-xs font-bold tracking-[0.4em] text-amber-600 uppercase animate-blur-in">
+          <span className="mb-4 inline-block text-xs font-bold tracking-[0.4em] text-red-800 uppercase animate-blur-in">
             Book Your Table
           </span>
           <h2 className="font-serif text-5xl font-bold leading-tight text-stone-900 md:text-7xl animate-blur-in delay-100">
             Reservasi{' '}
-            <span className="font-serif-text text-amber-600 italic">Tempat</span>
+            <span className="font-serif-text bg-gradient-to-r from-red-800 to-red-700 bg-clip-text text-transparent italic">Tempat</span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-stone-500 animate-blur-in delay-200">
             Pastikan meja tersedia untuk kamu dan teman-teman. Reservasi langsung via WhatsApp.
@@ -66,16 +66,16 @@ const Reservation = () => {
         <div className="mx-auto max-w-3xl">
           <div className="overflow-hidden rounded-[2.5rem] border border-stone-200 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)]">
             {/* Header decoration */}
-            <div className="relative bg-stone-950 px-8 py-10 text-center md:px-12">
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-amber-900/20 to-transparent" />
+            <div className="relative bg-gradient-to-r from-red-900 via-red-800 to-red-900 px-8 py-10 text-center md:px-12">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-yellow-500/10 to-transparent" />
               <div className="relative">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-500/20 text-3xl">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-yellow-400/20 text-3xl">
                   📍
                 </div>
                 <h3 className="font-serif text-2xl font-bold text-white">
-                  Warkop <span className="text-amber-400 italic">Azzahra</span>
+                  Warkop <span className="text-yellow-300 italic">Azzahra</span>
                 </h3>
-                <p className="mt-2 text-sm text-stone-400">
+                <p className="mt-2 text-sm text-red-200/70">
                   Jl. Poros Makassar - Maros, Belang-belang
                 </p>
               </div>
@@ -96,7 +96,7 @@ const Reservation = () => {
                     onChange={handleChange}
                     required
                     placeholder="Masukkan nama Anda"
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-100 focus:outline-none"
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
                   />
                 </div>
 
@@ -112,7 +112,7 @@ const Reservation = () => {
                     onChange={handleChange}
                     required
                     placeholder="08xx xxxx xxxx"
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-100 focus:outline-none"
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
                   />
                 </div>
               </div>
@@ -130,7 +130,7 @@ const Reservation = () => {
                     onChange={handleChange}
                     required
                     min={minDate}
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-100 focus:outline-none"
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
                   />
                 </div>
 
@@ -147,7 +147,7 @@ const Reservation = () => {
                     required
                     min="08:00"
                     max="22:00"
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-100 focus:outline-none"
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
                   />
                 </div>
 
@@ -160,11 +160,11 @@ const Reservation = () => {
                     name="guests"
                     value={formData.guests}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-100 focus:outline-none"
+                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
                   >
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30].map((n) => (
                       <option key={n} value={n.toString()}>
-                        {n} {n === 1 ? 'orang' : `orang`}
+                        {n} orang
                       </option>
                     ))}
                     <option value="30+">30+ orang</option>
@@ -183,7 +183,7 @@ const Reservation = () => {
                   onChange={handleChange}
                   rows={3}
                   placeholder="Contoh: Area outdoor, acara ulang tahun, dll."
-                  className="w-full resize-none rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-100 focus:outline-none"
+                  className="w-full resize-none rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
                 />
               </div>
 
@@ -193,7 +193,7 @@ const Reservation = () => {
                 className={`group flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 text-lg font-bold transition-all duration-500 ${
                   isSubmitted
                     ? 'bg-green-500 text-white'
-                    : 'bg-stone-950 text-white hover:bg-amber-500 hover:text-stone-900 hover:shadow-[0_20px_60px_-15px_rgba(245,158,11,0.4)]'
+                    : 'bg-gradient-to-r from-red-800 to-red-700 text-white hover:from-red-700 hover:to-red-600 hover:shadow-[0_20px_60px_-15px_rgba(153,27,27,0.4)]'
                 }`}
               >
                 {isSubmitted ? (

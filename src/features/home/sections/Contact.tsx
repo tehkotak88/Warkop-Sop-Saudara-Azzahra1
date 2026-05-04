@@ -15,13 +15,13 @@ const Contact = () => {
       className="border-t border-stone-800 bg-stone-950 py-20 text-white"
     >
       <div className="container mx-auto px-6">
-        <h2 className="mb-12 text-center font-serif text-4xl font-bold text-amber-500">
+        <h2 className="mb-12 text-center font-serif text-4xl font-bold text-yellow-400">
           Hubungi &amp; Kunjungi Kami
         </h2>
         <div className="flex flex-col items-center gap-12 lg:flex-row">
           <div className="w-full space-y-10 text-center lg:w-1/2 lg:text-left">
             <div>
-              <h3 className="mb-3 font-serif text-2xl font-semibold text-amber-400">
+              <h3 className="mb-3 font-serif text-2xl font-semibold text-red-400">
                 Alamat
               </h3>
               <p className="font-light tracking-wide text-stone-300">
@@ -32,7 +32,7 @@ const Contact = () => {
             </div>
 
             <div>
-              <h3 className="mb-3 font-serif text-2xl font-semibold text-amber-400">
+              <h3 className="mb-3 font-serif text-2xl font-semibold text-red-400">
                 Jam Buka
               </h3>
               <p className="font-light tracking-wide text-stone-300">
@@ -46,7 +46,7 @@ const Contact = () => {
                   setIsCareerImageError(false);
                   setIsCareerModalOpen(true);
                 }}
-                className="mt-4 inline-flex items-center font-serif text-2xl font-semibold text-amber-400 transition-colors duration-300 hover:text-amber-300"
+                className="mt-4 inline-flex items-center font-serif text-2xl font-semibold text-yellow-400 transition-colors duration-300 hover:text-yellow-300"
               >
                 Career
               </button>
@@ -57,7 +57,7 @@ const Contact = () => {
             </div>
 
             <div>
-              <h3 className="mb-4 font-serif text-2xl font-semibold text-amber-400">
+              <h3 className="mb-4 font-serif text-2xl font-semibold text-red-400">
                 Pemesanan &amp; Info
               </h3>
               <a
@@ -80,7 +80,7 @@ const Contact = () => {
             </div>
 
             <div>
-              <h3 className="mb-3 font-serif text-2xl font-semibold text-amber-400">
+              <h3 className="mb-3 font-serif text-2xl font-semibold text-red-400">
                 Ikuti Kami
               </h3>
               <p className="mx-auto mb-4 max-w-md font-light text-stone-300 lg:mx-0">
@@ -93,7 +93,7 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="text-stone-400 transition-colors duration-300 hover:scale-110 hover:text-amber-500"
+                  className="text-stone-400 transition-all duration-300 hover:scale-110 hover:text-yellow-400"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +133,7 @@ const Contact = () => {
           onClick={() => setIsCareerModalOpen(false)}
         >
           <div
-            className="relative w-full max-w-4xl overflow-hidden rounded-3xl border border-stone-700 bg-stone-900 shadow-2xl"
+            className="relative w-full max-w-4xl overflow-hidden rounded-3xl border border-red-900/30 bg-stone-900 shadow-2xl animate-blur-in"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -167,7 +167,7 @@ const Contact = () => {
               />
             ) : (
               <div className="p-10 text-center text-stone-200">
-                <p className="text-lg font-bold text-amber-300">
+                <p className="text-lg font-bold text-yellow-300">
                   Poster career belum ditemukan.
                 </p>
                 <p className="mt-2 text-sm text-stone-300">

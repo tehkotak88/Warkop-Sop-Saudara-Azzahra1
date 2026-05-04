@@ -67,8 +67,8 @@ const About = () => {
       className="relative overflow-hidden bg-[#fffaf5] py-32"
     >
       <div className="pointer-events-none absolute top-0 left-0 z-0 h-full w-full">
-        <div className="animate-float-gentle absolute top-40 -left-20 h-96 w-96 rounded-full bg-amber-100/40 blur-[120px]" />
-        <div className="animate-float-gentle delay-700 absolute right-20 bottom-40 h-80 w-80 rounded-full bg-stone-200/40 blur-[100px]" />
+        <div className="animate-float-gentle absolute top-40 -left-20 h-96 w-96 rounded-full bg-red-100/30 blur-[120px]" />
+        <div className="animate-float-gentle delay-700 absolute right-20 bottom-40 h-80 w-80 rounded-full bg-yellow-100/40 blur-[100px]" />
         <div className="absolute top-1/2 left-1/2 h-px w-full -translate-x-1/2 -translate-y-1/2 bg-stone-200/30" />
       </div>
 
@@ -85,10 +85,12 @@ const About = () => {
                 alt="Barista at work"
                 className="h-full w-full object-cover transition-transform duration-[2s] hover:scale-110"
               />
+              {/* Red overlay accent */}
+              <div className="absolute inset-0 bg-gradient-to-t from-red-900/20 to-transparent opacity-0 transition-opacity duration-500 hover:opacity-100" />
             </div>
 
             <div className="animate-bounce-slow absolute -top-4 -right-4 z-30">
-              <div className="flex h-24 w-24 rotate-12 items-center justify-center rounded-full border-4 border-white bg-amber-500 shadow-xl">
+              <div className="flex h-24 w-24 rotate-12 items-center justify-center rounded-full border-4 border-white bg-gradient-to-br from-red-800 to-red-700 shadow-xl shadow-red-900/30">
                 <p className="text-center text-[9px] leading-tight font-black tracking-tighter text-white uppercase">
                   Terbaik
                   <br />
@@ -105,7 +107,7 @@ const About = () => {
               }`}
             >
               Seni Dalam <br />{' '}
-              <span className="font-serif-text text-amber-600 italic">
+              <span className="font-serif-text bg-gradient-to-r from-red-800 to-red-700 bg-clip-text text-transparent italic">
                 Setiap Tetes.
               </span>
             </h2>
@@ -120,7 +122,7 @@ const About = () => {
                 perayaan rasa. Kami percaya bahwa setiap biji kopi memiliki jiwa
                 yang harus dihormati.
               </p>
-              <p className="rounded-r-2xl border-l-4 border-amber-500 bg-stone-100/50 py-2 pl-6 text-stone-700 italic">
+              <p className="rounded-r-2xl border-l-4 border-red-700 bg-red-50/50 py-2 pl-6 text-stone-700 italic">
                 &quot;Kami tidak hanya menyajikan kopi, kami menyajikan waktu
                 luang yang bermakna dan kehangatan yang tulus.&quot;
               </p>
@@ -136,16 +138,16 @@ const About = () => {
           {processes.map((process, index) => (
             <div
               key={process.id}
-              className={`group relative rounded-[2.5rem] border border-stone-200 bg-white p-10 transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] ${
+              className={`group relative rounded-[2.5rem] border border-stone-200 bg-white p-10 transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_40px_80px_-20px_rgba(153,27,27,0.1)] hover:border-red-200 ${
                 isVisible ? 'animate-blur-in' : 'opacity-0'
               }`}
               style={{ animationDelay: `${index * 200}ms` }}
             >
-              <div className="pointer-events-none absolute top-8 right-10 text-6xl font-black text-stone-50 transition-colors group-hover:text-amber-50">
+              <div className="pointer-events-none absolute top-8 right-10 text-6xl font-black text-stone-50 transition-colors group-hover:text-red-50">
                 {process.step}
               </div>
 
-              <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-950 text-white shadow-xl shadow-stone-950/20 transition-all duration-500 group-hover:scale-110 group-hover:bg-amber-500">
+              <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-950 text-white shadow-xl shadow-stone-950/20 transition-all duration-500 group-hover:scale-110 group-hover:bg-red-800 group-hover:shadow-red-800/30">
                 {process.icon}
               </div>
 
@@ -156,7 +158,7 @@ const About = () => {
                 {process.description}
               </p>
 
-              <div className="mt-8 h-1 w-8 bg-stone-100 transition-all duration-700 group-hover:w-full group-hover:bg-amber-300" />
+              <div className="mt-8 h-1 w-8 bg-stone-100 transition-all duration-700 group-hover:w-full group-hover:bg-gradient-to-r group-hover:from-red-700 group-hover:to-yellow-400" />
             </div>
           ))}
         </div>

@@ -58,32 +58,35 @@ const Careers = () => {
     >
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-amber-900/10 blur-[180px]" />
-        <div className="absolute -right-40 -bottom-40 h-[500px] w-[500px] rounded-full bg-blue-900/8 blur-[150px]" />
-        <div className="absolute top-1/2 left-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-600/5 blur-[120px]" />
+        <div className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-red-900/15 blur-[180px] animate-career-glow-1" />
+        <div className="absolute -right-40 -bottom-40 h-[500px] w-[500px] rounded-full bg-yellow-900/10 blur-[150px] animate-career-glow-2" />
+        <div className="absolute top-1/2 left-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-800/5 blur-[120px]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div className="mb-20 text-center">
           <span
-            className={`mb-4 inline-block text-xs font-bold tracking-[0.4em] text-amber-500 uppercase ${isVisible ? 'animate-blur-in' : 'opacity-0'
-              }`}
+            className={`mb-4 inline-block text-xs font-bold tracking-[0.4em] text-yellow-400 uppercase ${
+              isVisible ? 'animate-blur-in' : 'opacity-0'
+            }`}
           >
             Bergabung Bersama Kami
           </span>
           <h2
-            className={`font-serif text-5xl font-bold leading-tight text-white md:text-7xl ${isVisible ? 'animate-blur-in delay-100' : 'opacity-0'
-              }`}
+            className={`font-serif text-5xl font-bold leading-tight text-white md:text-7xl ${
+              isVisible ? 'animate-blur-in delay-100' : 'opacity-0'
+            }`}
           >
             We Are{' '}
-            <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent italic">
+            <span className="bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent italic">
               Hiring
             </span>
           </h2>
           <p
-            className={`mx-auto mt-6 max-w-2xl text-lg text-stone-400 ${isVisible ? 'animate-blur-in delay-200' : 'opacity-0'
-              }`}
+            className={`mx-auto mt-6 max-w-2xl text-lg text-stone-400 ${
+              isVisible ? 'animate-blur-in delay-200' : 'opacity-0'
+            }`}
           >
             Jl. Poros Makassar - Maros, Belang-belang
           </p>
@@ -95,13 +98,14 @@ const Careers = () => {
             <button
               key={job.id}
               onClick={() => setSelectedJob(selectedJob === job.id ? null : job.id)}
-              className={`group relative overflow-hidden rounded-2xl border p-5 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(245,158,11,0.3)] ${selectedJob === job.id
-                  ? 'border-amber-500/50 bg-amber-500/10 shadow-lg shadow-amber-500/20'
-                  : 'border-stone-700/50 bg-stone-800/30 hover:border-amber-500/30'
-                } ${isVisible ? 'animate-blur-in' : 'opacity-0'}`}
+              className={`group relative overflow-hidden rounded-2xl border p-5 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(153,27,27,0.3)] ${
+                selectedJob === job.id
+                  ? 'border-red-700/50 bg-red-800/15 shadow-lg shadow-red-900/20'
+                  : 'border-stone-700/50 bg-stone-800/30 hover:border-red-700/30'
+              } ${isVisible ? 'animate-blur-in' : 'opacity-0'}`}
               style={{ animationDelay: `${300 + index * 100}ms` }}
             >
-              <div className="mb-3 text-3xl transition-transform duration-500 group-hover:scale-125">
+              <div className="mb-3 text-3xl transition-transform duration-500 group-hover:scale-125 group-hover:animate-pulse">
                 {job.icon}
               </div>
               <h3 className="text-sm font-bold text-white uppercase tracking-wider">{job.title}</h3>
@@ -111,8 +115,9 @@ const Careers = () => {
                 </p>
               )}
               <div
-                className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-amber-400 to-amber-600 transition-all duration-500 ${selectedJob === job.id ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`}
+                className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-red-700 to-yellow-400 transition-all duration-500 ${
+                  selectedJob === job.id ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}
               />
             </button>
           ))}
@@ -122,11 +127,12 @@ const Careers = () => {
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Syarat & Ketentuan */}
           <div
-            className={`rounded-3xl border border-stone-700/50 bg-stone-800/20 p-8 backdrop-blur-sm md:p-10 ${isVisible ? 'animate-blur-in delay-500' : 'opacity-0'
-              }`}
+            className={`rounded-3xl border border-stone-700/50 bg-stone-800/20 p-8 backdrop-blur-sm md:p-10 ${
+              isVisible ? 'animate-blur-in delay-500' : 'opacity-0'
+            }`}
           >
             <div className="mb-8 flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-red-800/15 text-red-400">
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -137,11 +143,11 @@ const Careers = () => {
             </div>
             <ul className="space-y-4">
               {REQUIREMENTS.map((req, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-xs font-bold text-amber-400">
+                <li key={index} className="flex items-start gap-3 group/item">
+                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-800/20 text-xs font-bold text-yellow-400 transition-all group-hover/item:bg-red-800 group-hover/item:text-white group-hover/item:scale-110">
                     ✓
                   </span>
-                  <span className="text-stone-300">{req}</span>
+                  <span className="text-stone-300 transition-colors group-hover/item:text-white">{req}</span>
                 </li>
               ))}
             </ul>
@@ -149,11 +155,12 @@ const Careers = () => {
 
           {/* Manfaat & Keuntungan */}
           <div
-            className={`rounded-3xl border border-stone-700/50 bg-stone-800/20 p-8 backdrop-blur-sm md:p-10 ${isVisible ? 'animate-blur-in delay-700' : 'opacity-0'
-              }`}
+            className={`rounded-3xl border border-stone-700/50 bg-stone-800/20 p-8 backdrop-blur-sm md:p-10 ${
+              isVisible ? 'animate-blur-in delay-700' : 'opacity-0'
+            }`}
           >
             <div className="mb-8 flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-500/10 text-green-400">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-500/15 text-yellow-400">
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -164,7 +171,7 @@ const Careers = () => {
             </div>
             <ul className="space-y-4">
               {BENEFITS.map((benefit, index) => (
-                <li key={index} className="flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-white/5">
+                <li key={index} className="flex items-center gap-4 rounded-xl p-3 transition-all duration-300 hover:bg-white/5 hover:translate-x-2">
                   <span className="text-2xl">{benefit.icon}</span>
                   <span className="font-medium text-stone-300">{benefit.text}</span>
                 </li>
@@ -177,7 +184,7 @@ const Careers = () => {
         <div
           className={`mt-16 text-center ${isVisible ? 'animate-blur-in delay-1000' : 'opacity-0'}`}
         >
-          <div className="mx-auto max-w-2xl rounded-3xl border border-amber-500/20 bg-gradient-to-r from-amber-500/10 via-amber-600/5 to-amber-500/10 p-10 backdrop-blur-sm">
+          <div className="mx-auto max-w-2xl rounded-3xl border border-red-800/20 bg-gradient-to-r from-red-900/15 via-red-800/5 to-red-900/15 p-10 backdrop-blur-sm">
             <h3 className="mb-4 font-serif text-3xl font-bold text-white">
               Tertarik Bergabung?
             </h3>
@@ -188,7 +195,7 @@ const Careers = () => {
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <button
                 onClick={() => setIsApplyModalOpen(true)}
-                className="group inline-flex items-center gap-3 rounded-full bg-amber-500 px-8 py-4 font-bold text-stone-900 shadow-lg shadow-amber-500/30 transition-all duration-300 hover:scale-105 hover:bg-amber-400 hover:shadow-amber-400/40"
+                className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-red-800 to-red-700 px-8 py-4 font-bold text-white shadow-lg shadow-red-900/30 transition-all duration-300 hover:scale-105 hover:shadow-red-800/50"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -209,7 +216,7 @@ const Careers = () => {
 
             <div className="mt-8 flex flex-col items-center gap-2 text-sm text-stone-500">
               <p>
-                📧 <a href="mailto:azzahramaroswarkropdansopsaudar@gmail.com" className="text-amber-400 hover:text-amber-300 transition-colors">azzahramaroswarkropdansopsaudar@gmail.com</a>
+                📧 <a href="mailto:azzahramaroswarkropdansopsaudar@gmail.com" className="text-yellow-400 hover:text-yellow-300 transition-colors">azzahramaroswarkropdansopsaudar@gmail.com</a>
               </p>
               <p>📞 0895404677117 | 085399218530</p>
             </div>
@@ -224,7 +231,7 @@ const Careers = () => {
           onClick={() => setIsApplyModalOpen(false)}
         >
           <div
-            className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-stone-700 bg-stone-900 p-8 shadow-2xl"
+            className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-red-900/30 bg-stone-900 p-8 shadow-2xl animate-blur-in"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -237,7 +244,7 @@ const Careers = () => {
             </button>
 
             <div className="mb-6 text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-500/10 text-3xl">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-800/15 text-3xl">
                 📋
               </div>
               <h3 className="font-serif text-2xl font-bold text-white">Cara Melamar</h3>
@@ -246,16 +253,17 @@ const Careers = () => {
 
             <div className="space-y-4">
               <div className="rounded-2xl bg-stone-800/50 p-5">
-                <h4 className="mb-3 text-sm font-bold text-amber-400 uppercase tracking-wider">Langkah 1: Pilih Posisi</h4>
+                <h4 className="mb-3 text-sm font-bold text-yellow-400 uppercase tracking-wider">Langkah 1: Pilih Posisi</h4>
                 <div className="flex flex-wrap gap-2">
                   {JOB_POSITIONS.map((job) => (
                     <button
                       key={job.id}
                       onClick={() => setSelectedJob(job.id)}
-                      className={`rounded-full px-4 py-2 text-xs font-bold transition-all ${selectedJob === job.id
-                          ? 'bg-amber-500 text-stone-900'
+                      className={`rounded-full px-4 py-2 text-xs font-bold transition-all ${
+                        selectedJob === job.id
+                          ? 'bg-red-800 text-white'
                           : 'bg-stone-700/50 text-stone-300 hover:bg-stone-700'
-                        }`}
+                      }`}
                     >
                       {job.icon} {job.title}
                     </button>
@@ -264,11 +272,11 @@ const Careers = () => {
               </div>
 
               <div className="rounded-2xl bg-stone-800/50 p-5">
-                <h4 className="mb-3 text-sm font-bold text-amber-400 uppercase tracking-wider">Langkah 2: Kirim CV</h4>
+                <h4 className="mb-3 text-sm font-bold text-yellow-400 uppercase tracking-wider">Langkah 2: Kirim CV</h4>
                 <div className="space-y-3">
                   <a
                     href="mailto:azzahramaroswarkropdansopsaudar@gmail.com"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3 font-bold text-stone-900 transition-all hover:bg-amber-400"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-800 to-red-700 px-6 py-3 font-bold text-white transition-all hover:from-red-700 hover:to-red-600"
                   >
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -292,13 +300,16 @@ const Careers = () => {
       )}
 
       <style>{`
-        @keyframes float-gentle {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-30px) translateX(15px); }
+        @keyframes career-glow-1 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+          50% { transform: translate(30px, 20px) scale(1.1); opacity: 0.25; }
         }
-        .animate-float-gentle {
-          animation: float-gentle 12s ease-in-out infinite;
+        @keyframes career-glow-2 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+          50% { transform: translate(-20px, -15px) scale(1.1); opacity: 0.18; }
         }
+        .animate-career-glow-1 { animation: career-glow-1 10s ease-in-out infinite; }
+        .animate-career-glow-2 { animation: career-glow-2 12s ease-in-out infinite; }
       `}</style>
     </section>
   );

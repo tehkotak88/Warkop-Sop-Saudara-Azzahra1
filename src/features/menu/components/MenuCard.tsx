@@ -40,7 +40,7 @@ const MenuCard: FC<MenuCardProps> = ({ item, index = 0, onViewDetail }) => {
           <div className="absolute top-2 left-2">
             <span
               className={`rounded-full px-2 py-0.5 text-[7px] font-black tracking-widest text-white uppercase shadow-sm ${
-                item.category === 'best-seller' ? 'bg-amber-500' : 'bg-stone-900'
+                item.category === 'best-seller' ? 'bg-red-800' : 'bg-stone-900'
               }`}
             >
               {item.category === 'best-seller' ? 'HOT' : 'NEW'}
@@ -50,10 +50,10 @@ const MenuCard: FC<MenuCardProps> = ({ item, index = 0, onViewDetail }) => {
       </div>
 
       <div className="px-1 text-center">
-        <h3 className="mb-1 line-clamp-1 text-[12px] leading-tight font-bold text-stone-900 transition-colors group-hover:text-amber-600">
+        <h3 className="mb-1 line-clamp-1 text-[12px] leading-tight font-bold text-stone-900 transition-colors group-hover:text-red-800">
           {item.name}
         </h3>
-        <p className="text-[12px] font-black text-amber-600">
+        <p className="text-[12px] font-black text-red-800">
           {formatCurrency(item.price)}
         </p>
       </div>

@@ -26,12 +26,12 @@ const MenuPreview = () => {
     <section id="menu" className="relative overflow-hidden bg-[#fffaf5] py-24">
       <div className="container mx-auto px-6 lg:px-20">
         <div className="mb-12 text-center animate-blur-in">
-          <p className="mb-4 text-[10px] font-bold tracking-[0.3em] text-amber-600 uppercase">
+          <p className="mb-4 text-[10px] font-bold tracking-[0.3em] text-red-800 uppercase">
             Daftar Pilihan
           </p>
           <h2 className="text-4xl font-bold leading-tight text-stone-900 md:text-6xl">
             Katalog{' '}
-            <span className="font-serif font-normal text-stone-500 italic">
+            <span className="font-serif font-normal text-red-800/60 italic">
               Menu
             </span>
           </h2>
@@ -87,7 +87,7 @@ const MenuPreview = () => {
               placeholder={`Cari ${
                 activeType === 'beverage' ? 'minuman' : 'makanan'
               }...`}
-              className="font-serif-text w-full rounded-2xl border border-stone-200 bg-white px-6 py-4 shadow-sm transition-all focus:border-amber-400 focus:ring-4 focus:ring-amber-500/5 focus:outline-none"
+              className="font-serif-text w-full rounded-2xl border border-stone-200 bg-white px-6 py-4 shadow-sm transition-all focus:border-red-700 focus:ring-4 focus:ring-red-800/10 focus:outline-none"
             />
           </div>
         </div>
