@@ -12,77 +12,73 @@ const Header = ({ onNavigate }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 transition-all duration-700 ${
-        isScrolled ? 'py-4' : 'py-8'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        isScrolled ? 'py-3' : 'py-6'
       }`}
     >
-      <div className="container mx-auto max-w-7xl">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div
-          className={`flex items-center justify-between rounded-full border border-white/10 px-8 py-3 text-white transition-all duration-700 ${
+          className={`flex items-center justify-between rounded-full px-6 py-2.5 text-white transition-all duration-700 md:px-8 ${
             isScrolled
-              ? 'scale-[0.98] bg-stone-950/90 py-2.5 shadow-2xl shadow-red-950/20 backdrop-blur-xl'
-              : 'border-transparent bg-transparent'
+              ? 'border border-white/10 bg-red-950/90 shadow-2xl shadow-red-950/50 backdrop-blur-xl'
+              : 'border border-transparent bg-transparent'
           }`}
         >
-          <button
-            onClick={() => onNavigate('hero')}
-            className="group flex flex-col items-start"
-          >
-            <h1
-              className={`font-serif text-xl font-black tracking-tighter transition-all duration-500 ${
-                isScrolled ? 'text-yellow-400' : 'text-2xl text-white'
-              }`}
-            >
-              Warkop <span className="italic text-red-700">Azzahra</span>
-            </h1>
+          {/* Brand */}
+          <button onClick={() => onNavigate('hero')} className="group flex items-center gap-2">
+            <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-transparent transition-all duration-300 group-hover:border-yellow-400/50 group-hover:shadow-[0_0_15px_rgba(250,204,21,0.3)]">
+              <img src="/favicon.jpg" alt="Logo Warkop Azzahra" className="h-full w-full object-cover" />
+            </div>
+            <div className="hidden sm:block">
+              <span className={`font-serif text-sm font-bold transition-all ${isScrolled ? 'text-white' : 'text-white/90'}`}>
+                Warkop <span className="text-yellow-400 italic">Azzahra</span>
+              </span>
+            </div>
           </button>
 
-          <nav className="hidden items-center space-x-10 md:flex">
+          {/* Desktop Nav */}
+          <nav className="hidden items-center gap-1 md:flex">
             {HOME_NAV_LINKS.map((link) => (
               <button
                 key={link.id}
                 onClick={() => onNavigate(link.id)}
-                className="group relative text-[10px] font-black uppercase tracking-[0.2em] text-stone-300 transition-colors hover:text-yellow-300"
+                className="relative rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-white/70 transition-all hover:bg-white/10 hover:text-white"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-red-700 to-yellow-400 transition-all duration-300 group-hover:w-full" />
               </button>
             ))}
           </nav>
 
+          {/* Mobile Toggle */}
           <button
-            onClick={() => setIsMenuOpen((current) => !current)}
-            className="rounded-full bg-white/5 p-2 md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 md:hidden"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d={
-                  isMenuOpen
-                    ? 'M6 18L18 6M6 6l12 12'
-                    : 'M4 6h16M4 12h16M4 18h16'
-                }
+                d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
               />
             </svg>
           </button>
         </div>
 
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="mt-4 animate-blur-in overflow-hidden rounded-3xl border border-red-900/30 bg-stone-950/95 backdrop-blur-3xl">
-            <nav className="flex flex-col space-y-2 p-4">
+          <div
+            className="mt-3 overflow-hidden rounded-2xl border border-red-900 bg-red-950/95 backdrop-blur-xl"
+            style={{ animation: 'slideDown 0.3s ease' }}
+          >
+            <nav className="p-3">
               {HOME_NAV_LINKS.map((link) => (
                 <button
                   key={link.id}
@@ -90,7 +86,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
                     onNavigate(link.id);
                     setIsMenuOpen(false);
                   }}
-                  className="w-full rounded-2xl px-6 py-4 text-left text-lg font-bold text-white transition-colors hover:bg-red-900/20 hover:text-yellow-300"
+                  className="w-full rounded-xl px-5 py-3.5 text-left text-sm font-bold text-white/80 transition-all hover:bg-red-900/50 hover:text-white"
                 >
                   {link.label}
                 </button>
@@ -99,6 +95,13 @@ const Header = ({ onNavigate }: HeaderProps) => {
           </div>
         )}
       </div>
+
+      <style>{`
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </header>
   );
 };

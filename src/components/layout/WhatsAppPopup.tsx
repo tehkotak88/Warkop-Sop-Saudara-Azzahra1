@@ -52,8 +52,12 @@ const WhatsAppPopup = () => {
     },
   ];
 
+  const [selectedOutlet, setSelectedOutlet] = useState<string>(SITE_CONFIG.outlets[0].name);
+
   const handleSendMessage = (message: string) => {
-    const url = `https://wa.me/${SITE_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    const outlet = SITE_CONFIG.outlets.find(o => o.name === selectedOutlet) || SITE_CONFIG.outlets[0];
+    const finalMessage = `[Outlet: ${selectedOutlet}] ${message}`;
+    const url = `https://wa.me/${outlet.whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
     window.open(url, '_blank');
     setIsOpen(false);
   };
@@ -143,6 +147,23 @@ const WhatsAppPopup = () => {
 
             {/* Quick Action Buttons */}
             <div className="px-4 pb-4">
+              <div className="mb-4 rounded-2xl bg-stone-100 p-3">
+                <p className="mb-2 text-[10px] font-bold text-stone-500 uppercase tracking-widest px-1">
+                  Pilih Cabang / Outlet
+                </p>
+                <select
+                  value={selectedOutlet}
+                  onChange={(e) => setSelectedOutlet(e.target.value)}
+                  className="w-full rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-sm font-bold text-stone-700 shadow-sm focus:border-green-500 focus:outline-none"
+                >
+                  {SITE_CONFIG.outlets.map((outlet) => (
+                    <option key={outlet.name} value={outlet.name}>
+                      📍 {outlet.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <p className="mb-3 px-2 text-xs font-bold text-stone-400 uppercase tracking-wider">
                 Pilih Topik
               </p>

@@ -1,4 +1,4 @@
-import { formatCompactPrice } from '../../../lib/format';
+import { formatCurrency } from '../../../lib/format';
 import { MenuItem } from '../../../types/menu';
 
 interface ProductDetailModalProps {
@@ -18,98 +18,106 @@ const ProductDetailModal = ({
 
   return (
     <div
-      className="animate-in fixed inset-0 z-[110] flex items-center justify-center bg-stone-900/40 p-4 backdrop-blur-md fade-in duration-300"
+      className="fixed inset-0 z-[110] flex items-center justify-center bg-stone-950/80 p-4 backdrop-blur-md"
       onClick={onClose}
+      style={{ animation: 'fadeIn 0.3s ease' }}
     >
       <div
-        className="bg-paper-premium animate-in max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] border-4 border-black shadow-[0_0_100px_rgba(0,0,0,0.2)] zoom-in-95 duration-500 sm:rounded-[4rem]"
+        className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-stone-800 bg-stone-900 shadow-2xl shadow-red-950/20"
         onClick={(event) => event.stopPropagation()}
+        style={{ animation: 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}
       >
-        <div className="relative p-8 sm:p-16">
-          <button
-            onClick={onClose}
-            className="absolute top-8 right-8 z-10 rounded-full p-2 transition-colors hover:bg-stone-100"
-          >
-            <svg className="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={3}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 rounded-full bg-stone-800/80 p-2 text-stone-400 backdrop-blur-sm transition-all hover:bg-stone-700 hover:text-white"
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
 
-          <div className="flex flex-col gap-12">
-            <div className="space-y-4 text-center">
-              <h4 className="text-[10px] font-black tracking-[0.5em] text-stone-400 uppercase sm:text-xs">
-                Authentic Catalog
-              </h4>
-              <h2 className="font-cursive text-6xl leading-none text-black sm:text-9xl">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Image */}
+          <div className="relative aspect-square overflow-hidden md:rounded-l-2xl">
+            <img
+              src={item.imageUrl}
+              alt={item.name}
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 to-transparent md:bg-gradient-to-r md:from-transparent md:to-stone-900/30" />
+
+            {/* Category Badge */}
+            {item.category !== 'standard' && (
+              <div className="absolute top-4 left-4">
+                <span className={`rounded-full px-3 py-1 text-[9px] font-black tracking-widest text-white uppercase ${
+                  item.category === 'best-seller'
+                    ? 'bg-red-800 shadow-lg shadow-red-900/30'
+                    : 'bg-white/15 backdrop-blur-sm'
+                }`}>
+                  {item.category === 'best-seller' ? '🔥 Best Seller' : '✨ New'}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Details */}
+          <div className="flex flex-col justify-between p-8 md:p-10">
+            <div>
+              <span className="mb-2 inline-block text-[9px] font-bold tracking-[0.4em] text-stone-600 uppercase">
+                {item.type === 'beverage' ? 'Minuman' : 'Makanan'}
+              </span>
+              <h2 className="mb-4 font-serif text-3xl font-bold text-white md:text-4xl">
                 {item.name}
               </h2>
-              <div className="flex justify-center pt-4">
-                <div className="brush-banner">
-                  <span className="text-lg font-black tracking-[0.2em] uppercase sm:text-2xl">
-                    Product Details
-                  </span>
-                </div>
-              </div>
-            </div>
 
-            <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-              <div className="relative aspect-square overflow-hidden rounded-[2rem] border-2 border-black shadow-2xl sm:rounded-[3rem]">
-                <img
-                  src={item.imageUrl}
-                  alt={item.name}
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute right-6 bottom-6">
-                  <div className="price-circle !h-20 !w-20 !text-2xl shadow-2xl">
-                    {formatCompactPrice(item.price)}
-                  </div>
-                </div>
+              <div className="mb-6">
+                <p className="text-lg font-serif text-stone-400 italic leading-relaxed">
+                  &quot;{item.description}&quot;
+                </p>
               </div>
 
-              <div className="space-y-8">
-                <div className="space-y-3">
-                  <h4 className="inline-block border-b-2 border-black pb-1 text-xs font-black tracking-[0.3em] text-black uppercase">
-                    Description
+              {item.details && (
+                <div className="mb-6 rounded-xl border border-stone-800 bg-stone-800/30 p-4">
+                  <h4 className="mb-2 text-[10px] font-bold tracking-[0.3em] text-stone-500 uppercase">
+                    Detail
                   </h4>
-                  <p className="text-lg leading-relaxed font-medium text-stone-800 italic sm:text-xl">
-                    &quot;{item.description}&quot;
+                  <p className="text-sm leading-relaxed text-stone-400">
+                    {item.details}
                   </p>
                 </div>
-
-                <div className="space-y-3">
-                  <h4 className="inline-block border-b-2 border-black pb-1 text-xs font-black tracking-[0.3em] text-black uppercase">
-                    Additional Info
-                  </h4>
-                  <p className="text-sm leading-relaxed text-stone-500">
-                    {item.details ||
-                      'Disajikan dengan penuh rasa dan keikhlasan oleh tim Warkop Azzahra. Harap tanyakan ketersediaan stok kepada kru kami.'}
-                  </p>
-                </div>
-
-                <div className="w-full pt-8">
-                  <button
-                    onClick={onClose}
-                    className="w-full rounded-2xl bg-black py-5 text-[12px] font-black tracking-[0.4em] text-white uppercase shadow-xl transition-all hover:bg-stone-800 active:scale-95"
-                  >
-                    CLOSE SELECTION
-                  </button>
-                </div>
-              </div>
+              )}
             </div>
 
-            <div className="text-center">
-              <p className="text-[10px] font-black tracking-[0.5em] text-stone-300 uppercase">
-                WARKOP AZZAHRA EST. 2024
-              </p>
+            <div className="mt-6 space-y-4">
+              {/* Price */}
+              <div className="flex items-center justify-between rounded-xl bg-red-800/10 px-5 py-4">
+                <span className="text-sm font-bold text-stone-400 uppercase tracking-wider">Harga</span>
+                <span className="font-serif text-2xl font-bold text-yellow-400">{formatCurrency(item.price)}</span>
+              </div>
+
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="w-full rounded-xl border border-stone-800 bg-stone-800/50 py-4 text-xs font-bold tracking-[0.2em] text-stone-400 uppercase transition-all hover:bg-stone-700 hover:text-white"
+              >
+                Tutup
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(20px) scale(0.97); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+      `}</style>
     </div>
   );
 };

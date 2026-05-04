@@ -42,11 +42,14 @@ const Careers = () => {
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
 
+  const [selectedOutlet, setSelectedOutlet] = useState<string>(SITE_CONFIG.outlets[0].name);
+
   const handleApplyWhatsApp = (jobTitle?: string) => {
+    const outlet = SITE_CONFIG.outlets.find(o => o.name === selectedOutlet) || SITE_CONFIG.outlets[0];
     const message = jobTitle
-      ? `Halo, saya tertarik untuk melamar posisi *${jobTitle}* di Warkop Azzahra. Saya ingin mengirimkan CV saya.`
-      : `Halo, saya tertarik untuk melamar kerja di Warkop Azzahra. Saya ingin mengetahui posisi yang tersedia.`;
-    const url = `https://wa.me/${SITE_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      ? `Halo, saya tertarik untuk melamar posisi *${jobTitle}* di Warkop Azzahra (Cabang ${selectedOutlet}). Saya ingin mengirimkan CV saya.`
+      : `Halo, saya tertarik untuk melamar kerja di Warkop Azzahra (Cabang ${selectedOutlet}). Saya ingin mengetahui posisi yang tersedia.`;
+    const url = `https://wa.me/${outlet.whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
 
@@ -54,7 +57,7 @@ const Careers = () => {
     <section
       id="karir"
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950 py-32"
+      className="relative overflow-hidden bg-red-950 py-28 lg:py-36"
     >
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0">
@@ -66,29 +69,18 @@ const Careers = () => {
       <div className="container relative z-10 mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div className="mb-20 text-center">
-          <span
-            className={`mb-4 inline-block text-xs font-bold tracking-[0.4em] text-yellow-400 uppercase ${
-              isVisible ? 'animate-blur-in' : 'opacity-0'
-            }`}
-          >
+          <span className="mb-4 inline-block text-[10px] font-bold tracking-[0.5em] text-yellow-400/80 uppercase animate-blur-in">
             Bergabung Bersama Kami
           </span>
-          <h2
-            className={`font-serif text-5xl font-bold leading-tight text-white md:text-7xl ${
-              isVisible ? 'animate-blur-in delay-100' : 'opacity-0'
-            }`}
-          >
-            We Are{' '}
-            <span className="bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent italic">
-              Hiring
-            </span>
+          <h2 className="font-serif text-4xl font-bold text-white md:text-6xl lg:text-7xl animate-blur-in delay-100">
+            Peluang <span className="bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent italic">Karir</span>
           </h2>
           <p
-            className={`mx-auto mt-6 max-w-2xl text-lg text-stone-400 ${
+            className={`mx-auto mt-6 max-w-2xl text-lg text-white/60 ${
               isVisible ? 'animate-blur-in delay-200' : 'opacity-0'
             }`}
           >
-            Jl. Poros Makassar - Maros, Belang-belang
+            Jelajahi berbagai posisi yang tersedia dan jadilah bagian dari perjalanan kami dalam menyajikan kopi Nusantara terbaik.
           </p>
         </div>
 
@@ -253,7 +245,22 @@ const Careers = () => {
 
             <div className="space-y-4">
               <div className="rounded-2xl bg-stone-800/50 p-5">
-                <h4 className="mb-3 text-sm font-bold text-yellow-400 uppercase tracking-wider">Langkah 1: Pilih Posisi</h4>
+                <h4 className="mb-3 text-sm font-bold text-yellow-400 uppercase tracking-wider">Langkah 1: Pilih Outlet</h4>
+                <select
+                  value={selectedOutlet}
+                  onChange={(e) => setSelectedOutlet(e.target.value)}
+                  className="w-full rounded-xl border border-red-900 bg-red-950/50 px-4 py-3 text-sm text-white transition-all focus:border-yellow-500 focus:outline-none"
+                >
+                  {SITE_CONFIG.outlets.map((outlet) => (
+                    <option key={outlet.name} value={outlet.name}>
+                      {outlet.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="rounded-2xl bg-stone-800/50 p-5">
+                <h4 className="mb-3 text-sm font-bold text-yellow-400 uppercase tracking-wider">Langkah 2: Pilih Posisi</h4>
                 <div className="flex flex-wrap gap-2">
                   {JOB_POSITIONS.map((job) => (
                     <button

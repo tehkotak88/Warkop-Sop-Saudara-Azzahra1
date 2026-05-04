@@ -10,6 +10,7 @@ const Reservation = () => {
     time: '',
     guests: '2',
     notes: '',
+    outlet: SITE_CONFIG.outlets[0].name as string,
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -20,7 +21,10 @@ const Reservation = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const selectedOutlet = SITE_CONFIG.outlets.find(o => o.name === formData.outlet) || SITE_CONFIG.outlets[0];
+
     const message = `🍽️ *RESERVASI TEMPAT - Warkop Azzahra*\n\n`
+      + `📍 Outlet: ${formData.outlet}\n`
       + `👤 Nama: ${formData.name}\n`
       + `📱 No. HP: ${formData.phone}\n`
       + `📅 Tanggal: ${formData.date}\n`
@@ -29,7 +33,7 @@ const Reservation = () => {
       + `📝 Catatan: ${formData.notes || '-'}\n\n`
       + `Mohon konfirmasi ketersediaan tempat. Terima kasih! 🙏`;
 
-    const url = `https://wa.me/${SITE_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${selectedOutlet.whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
     setIsSubmitted(true);
 
@@ -42,7 +46,7 @@ const Reservation = () => {
   const minDate = tomorrow.toISOString().split('T')[0];
 
   return (
-    <section id="reservasi" className="relative overflow-hidden bg-[#fffaf5] py-32">
+    <section id="reservasi" className="relative overflow-hidden bg-red-950 py-32">
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-20 -right-40 h-[500px] w-[500px] rounded-full bg-red-100/40 blur-[150px]" />
@@ -51,20 +55,20 @@ const Reservation = () => {
 
       <div className="container relative z-10 mx-auto px-6 lg:px-12">
         <div className="mb-20 text-center">
-          <span className="mb-4 inline-block text-xs font-bold tracking-[0.4em] text-red-800 uppercase animate-blur-in">
+          <span className="mb-4 inline-block text-[10px] font-bold tracking-[0.5em] text-yellow-400/80 uppercase animate-blur-in">
             Book Your Table
           </span>
-          <h2 className="font-serif text-5xl font-bold leading-tight text-stone-900 md:text-7xl animate-blur-in delay-100">
+          <h2 className="font-serif text-5xl font-bold leading-tight text-white md:text-7xl animate-blur-in delay-100">
             Reservasi{' '}
-            <span className="font-serif-text bg-gradient-to-r from-red-800 to-red-700 bg-clip-text text-transparent italic">Tempat</span>
+            <span className="bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent italic">Tempat</span>
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-stone-500 animate-blur-in delay-200">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/60 animate-blur-in delay-200">
             Pastikan meja tersedia untuk kamu dan teman-teman. Reservasi langsung via WhatsApp.
           </p>
         </div>
 
         <div className="mx-auto max-w-3xl">
-          <div className="overflow-hidden rounded-[2.5rem] border border-stone-200 bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)]">
+          <div className="overflow-hidden rounded-[2.5rem] border border-red-900 bg-red-900/20 backdrop-blur-sm shadow-[0_40px_80px_-20px_rgba(250,204,21,0.08)]">
             {/* Header decoration */}
             <div className="relative bg-gradient-to-r from-red-900 via-red-800 to-red-900 px-8 py-10 text-center md:px-12">
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-yellow-500/10 to-transparent" />
@@ -76,16 +80,35 @@ const Reservation = () => {
                   Warkop <span className="text-yellow-300 italic">Azzahra</span>
                 </h3>
                 <p className="mt-2 text-sm text-red-200/70">
-                  Jl. Poros Makassar - Maros, Belang-belang
+                  Silakan pilih cabang / outlet terdekat Anda
                 </p>
               </div>
             </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6 p-8 md:p-12">
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="grid gap-6 md:grid-cols-3">
+                <div className="md:col-span-1">
+                  <label htmlFor="res-outlet" className="mb-2 block text-sm font-bold text-white/80 uppercase tracking-wider">
+                    Pilih Outlet
+                  </label>
+                  <select
+                    id="res-outlet"
+                    name="outlet"
+                    value={formData.outlet}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border border-red-900 bg-red-950/50 px-5 py-4 text-white transition-all focus:border-yellow-500 focus:bg-red-950 focus:ring-4 focus:ring-yellow-500/20 focus:outline-none"
+                  >
+                    {SITE_CONFIG.outlets.map((outlet) => (
+                      <option key={outlet.name} value={outlet.name}>
+                        {outlet.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 <div>
-                  <label htmlFor="res-name" className="mb-2 block text-sm font-bold text-stone-700 uppercase tracking-wider">
+                  <label htmlFor="res-name" className="mb-2 block text-sm font-bold text-white/80 uppercase tracking-wider">
                     Nama Lengkap
                   </label>
                   <input
@@ -96,12 +119,12 @@ const Reservation = () => {
                     onChange={handleChange}
                     required
                     placeholder="Masukkan nama Anda"
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
+                    className="w-full rounded-xl border border-red-900 bg-red-950/50 px-5 py-4 text-white placeholder-white/30 transition-all focus:border-yellow-500 focus:bg-red-950 focus:ring-4 focus:ring-yellow-500/20 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="res-phone" className="mb-2 block text-sm font-bold text-stone-700 uppercase tracking-wider">
+                  <label htmlFor="res-phone" className="mb-2 block text-sm font-bold text-white/80 uppercase tracking-wider">
                     No. HP / WhatsApp
                   </label>
                   <input
@@ -112,14 +135,14 @@ const Reservation = () => {
                     onChange={handleChange}
                     required
                     placeholder="08xx xxxx xxxx"
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
+                    className="w-full rounded-xl border border-red-900 bg-red-950/50 px-5 py-4 text-white placeholder-white/30 transition-all focus:border-yellow-500 focus:bg-red-950 focus:ring-4 focus:ring-yellow-500/20 focus:outline-none"
                   />
                 </div>
               </div>
 
               <div className="grid gap-6 md:grid-cols-3">
                 <div>
-                  <label htmlFor="res-date" className="mb-2 block text-sm font-bold text-stone-700 uppercase tracking-wider">
+                  <label htmlFor="res-date" className="mb-2 block text-sm font-bold text-white/80 uppercase tracking-wider">
                     Tanggal
                   </label>
                   <input
@@ -130,12 +153,12 @@ const Reservation = () => {
                     onChange={handleChange}
                     required
                     min={minDate}
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
+                    className="w-full rounded-xl border border-red-900 bg-red-950/50 px-5 py-4 text-white placeholder-white/30 transition-all focus:border-yellow-500 focus:bg-red-950 focus:ring-4 focus:ring-yellow-500/20 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="res-time" className="mb-2 block text-sm font-bold text-stone-700 uppercase tracking-wider">
+                  <label htmlFor="res-time" className="mb-2 block text-sm font-bold text-white/80 uppercase tracking-wider">
                     Jam
                   </label>
                   <input
@@ -147,12 +170,12 @@ const Reservation = () => {
                     required
                     min="08:00"
                     max="22:00"
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
+                    className="w-full rounded-xl border border-red-900 bg-red-950/50 px-5 py-4 text-white placeholder-white/30 transition-all focus:border-yellow-500 focus:bg-red-950 focus:ring-4 focus:ring-yellow-500/20 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="res-guests" className="mb-2 block text-sm font-bold text-stone-700 uppercase tracking-wider">
+                  <label htmlFor="res-guests" className="mb-2 block text-sm font-bold text-white/80 uppercase tracking-wider">
                     Jumlah Tamu
                   </label>
                   <select
@@ -160,7 +183,7 @@ const Reservation = () => {
                     name="guests"
                     value={formData.guests}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
+                    className="w-full rounded-xl border border-red-900 bg-red-950/50 px-5 py-4 text-white transition-all focus:border-yellow-500 focus:bg-red-950 focus:ring-4 focus:ring-yellow-500/20 focus:outline-none"
                   >
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30].map((n) => (
                       <option key={n} value={n.toString()}>
@@ -173,7 +196,7 @@ const Reservation = () => {
               </div>
 
               <div>
-                <label htmlFor="res-notes" className="mb-2 block text-sm font-bold text-stone-700 uppercase tracking-wider">
+                <label htmlFor="res-notes" className="mb-2 block text-sm font-bold text-white/80 uppercase tracking-wider">
                   Catatan Tambahan (Opsional)
                 </label>
                 <textarea
@@ -183,7 +206,7 @@ const Reservation = () => {
                   onChange={handleChange}
                   rows={3}
                   placeholder="Contoh: Area outdoor, acara ulang tahun, dll."
-                  className="w-full resize-none rounded-xl border border-stone-200 bg-stone-50 px-5 py-4 text-stone-800 transition-all focus:border-red-700 focus:bg-white focus:ring-4 focus:ring-red-100 focus:outline-none"
+                  className="w-full resize-none rounded-xl border border-red-900 bg-red-950/50 px-5 py-4 text-white placeholder-white/30 transition-all focus:border-yellow-500 focus:bg-red-950 focus:ring-4 focus:ring-yellow-500/20 focus:outline-none"
                 />
               </div>
 
@@ -193,7 +216,7 @@ const Reservation = () => {
                 className={`group flex w-full items-center justify-center gap-3 rounded-2xl px-8 py-5 text-lg font-bold transition-all duration-500 ${
                   isSubmitted
                     ? 'bg-green-500 text-white'
-                    : 'bg-gradient-to-r from-red-800 to-red-700 text-white hover:from-red-700 hover:to-red-600 hover:shadow-[0_20px_60px_-15px_rgba(153,27,27,0.4)]'
+                    : 'bg-gradient-to-r from-yellow-500 to-amber-600 text-stone-900 hover:from-yellow-400 hover:to-amber-500 hover:shadow-[0_20px_60px_-15px_rgba(250,204,21,0.4)]'
                 }`}
               >
                 {isSubmitted ? (
@@ -213,7 +236,7 @@ const Reservation = () => {
                 )}
               </button>
 
-              <p className="text-center text-xs text-stone-400">
+              <p className="text-center text-xs text-white/50">
                 Jam operasional: {SITE_CONFIG.contact.openingDays}, {SITE_CONFIG.contact.openingHours}
               </p>
             </form>

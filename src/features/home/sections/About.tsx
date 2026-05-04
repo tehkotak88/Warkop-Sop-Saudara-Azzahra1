@@ -6,172 +6,155 @@ const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isVisible = useRevealOnIntersect(sectionRef);
 
+  const stats = [
+    { number: '2024', label: 'Established' },
+    { number: '50+', label: 'Menu Pilihan' },
+    { number: '7', label: 'Outlet Ready' },
+  ];
+
   const processes = [
     {
       id: 1,
       step: '01',
       title: 'Penyortiran Manual',
-      description:
-        'Hanya biji kopi terbaik yang lolos seleksi ketat tim ahli kami.',
-      icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-          />
-        </svg>
-      ),
+      description: 'Hanya biji kopi terbaik yang lolos seleksi ketat tim ahli kami.',
+      icon: '🫘',
     },
     {
       id: 2,
       step: '02',
       title: 'Roasting Presisi',
-      description:
-        'Proses sangrai batch kecil untuk mengunci karakter rasa Nusantara.',
-      icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M13 10V3L4 14h7v7l9-11h-7z"
-          />
-        </svg>
-      ),
+      description: 'Proses sangrai batch kecil untuk mengunci karakter rasa Nusantara.',
+      icon: '🔥',
     },
     {
       id: 3,
       step: '03',
       title: 'Sajian Sepenuh Hati',
-      description:
-        'Setiap cangkir adalah karya seni yang diseduh oleh barista kami.',
-      icon: (
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-          />
-        </svg>
-      ),
+      description: 'Setiap cangkir adalah karya seni yang diseduh oleh barista kami.',
+      icon: '❤️',
     },
   ];
 
   return (
-    <section
-      id="tentang-kami"
-      ref={sectionRef}
-      className="relative overflow-hidden bg-[#fffaf5] py-32"
-    >
-      <div className="pointer-events-none absolute top-0 left-0 z-0 h-full w-full">
-        <div className="animate-float-gentle absolute top-40 -left-20 h-96 w-96 rounded-full bg-red-100/30 blur-[120px]" />
-        <div className="animate-float-gentle delay-700 absolute right-20 bottom-40 h-80 w-80 rounded-full bg-yellow-100/40 blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 h-px w-full -translate-x-1/2 -translate-y-1/2 bg-stone-200/30" />
+    <section id="tentang-kami" ref={sectionRef} className="relative overflow-hidden bg-red-950 py-28 lg:py-36">
+      {/* Subtle background decoration */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-red-900/60 blur-[150px]" />
+        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-yellow-500/10 blur-[120px]" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6">
-        <div className="mb-32 flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
-          <div className="relative h-[400px] w-full md:h-[500px] lg:w-[40%]">
-            <div
-              className={`absolute top-0 left-0 z-10 h-[90%] w-[85%] overflow-hidden rounded-[2.5rem] shadow-2xl ${
-                isVisible ? 'animate-blur-in' : 'opacity-0'
-              }`}
-            >
+      <div className="container relative z-10 mx-auto px-6 lg:px-12">
+        {/* Section Label */}
+        <div className={`mb-20 text-center ${isVisible ? 'animate-blur-in' : 'opacity-0'}`}>
+          <span className="mb-4 inline-block text-[10px] font-bold tracking-[0.5em] text-yellow-400/80 uppercase">
+            Tentang Kami
+          </span>
+          <h2 className="font-serif text-4xl font-bold text-white md:text-6xl lg:text-7xl">
+            Seni Dalam{' '}
+            <span className="bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent italic">
+              Setiap Tetes
+            </span>
+          </h2>
+        </div>
+
+        {/* Two Column Layout */}
+        <div className="mb-28 grid items-center gap-16 lg:grid-cols-2">
+          {/* Image Side */}
+          <div className={`relative ${isVisible ? 'animate-blur-in' : 'opacity-0'}`} style={{ animationDelay: '200ms' }}>
+            <div className="relative overflow-hidden rounded-[2rem] shadow-2xl shadow-stone-900/10">
               <img
                 src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop"
                 alt="Barista at work"
-                className="h-full w-full object-cover transition-transform duration-[2s] hover:scale-110"
+                className="aspect-[4/5] w-full object-cover transition-transform duration-[3s] hover:scale-105"
               />
-              {/* Red overlay accent */}
-              <div className="absolute inset-0 bg-gradient-to-t from-red-900/20 to-transparent opacity-0 transition-opacity duration-500 hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 to-transparent" />
             </div>
 
-            <div className="animate-bounce-slow absolute -top-4 -right-4 z-30">
-              <div className="flex h-24 w-24 rotate-12 items-center justify-center rounded-full border-4 border-white bg-gradient-to-br from-red-800 to-red-700 shadow-xl shadow-red-900/30">
-                <p className="text-center text-[9px] leading-tight font-black tracking-tighter text-white uppercase">
-                  Terbaik
-                  <br />
-                  Lokal
-                </p>
-              </div>
+            {/* Accent badge */}
+            <div className="absolute -top-5 -left-5 z-10 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-yellow-500 to-amber-600 shadow-lg shadow-yellow-900/20" style={{ animation: 'slowSpin 20s linear infinite' }}>
+              <p className="text-center text-[7px] leading-tight font-black tracking-tight text-stone-900 uppercase">
+                Est.<br />2024
+              </p>
             </div>
           </div>
 
-          <div className="lg:w-[60%]">
-            <h2
-              className={`font-display mb-8 text-5xl leading-[1] font-bold text-stone-900 md:text-7xl ${
-                isVisible ? 'animate-blur-in' : 'opacity-0'
-              }`}
-            >
-              Seni Dalam <br />{' '}
-              <span className="font-serif-text bg-gradient-to-r from-red-800 to-red-700 bg-clip-text text-transparent italic">
-                Setiap Tetes.
-              </span>
-            </h2>
+          {/* Text Side */}
+          <div className={`${isVisible ? 'animate-blur-in' : 'opacity-0'}`} style={{ animationDelay: '400ms' }}>
+            <div className="space-y-6 text-base leading-relaxed text-white/70 md:text-lg">
+              <p className="font-serif-text text-xl leading-relaxed text-white md:text-2xl">
+                Warkop Azzahra bukan sekadar tempat berkumpul — ini adalah <span className="font-semibold text-yellow-400">perayaan rasa</span> yang lahir dari dedikasi dan kecintaan terhadap kopi Nusantara.
+              </p>
 
-            <div
-              className={`font-serif-text space-y-6 text-lg leading-relaxed text-stone-600 md:text-xl ${
-                isVisible ? 'animate-blur-in delay-200' : 'opacity-0'
-              }`}
-            >
+              <div className="my-8 rounded-2xl border-l-4 border-yellow-500 bg-gradient-to-r from-red-900/50 to-transparent py-5 pl-6 pr-4">
+                <p className="font-serif-text text-white/90 italic">
+                  &quot;Kami tidak hanya menyajikan kopi, kami menyajikan waktu luang yang bermakna dan kehangatan yang tulus.&quot;
+                </p>
+              </div>
+
               <p>
-                Warkop Azzahra bukan sekadar tempat berkumpul; ini adalah
-                perayaan rasa. Kami percaya bahwa setiap biji kopi memiliki jiwa
-                yang harus dihormati.
+                Dari pegunungan Gayo hingga Toraja, kami membawa keajaiban alam Indonesia langsung ke dalam cangkir Anda. Setiap biji kopi melewati proses seleksi ketat sebelum disajikan.
               </p>
-              <p className="rounded-r-2xl border-l-4 border-red-700 bg-red-50/50 py-2 pl-6 text-stone-700 italic">
-                &quot;Kami tidak hanya menyajikan kopi, kami menyajikan waktu
-                luang yang bermakna dan kehangatan yang tulus.&quot;
-              </p>
-              <p>
-                Dari pegunungan Gayo hingga Toraja, kami membawa keajaiban alam
-                Indonesia langsung ke dalam cangkir Anda.
-              </p>
+            </div>
+
+            {/* Stats Row */}
+            <div className="mt-10 grid grid-cols-3 gap-4">
+              {stats.map((stat, i) => (
+                <div key={i} className="text-center">
+                  <p className="font-serif text-2xl font-bold text-white md:text-3xl">{stat.number}</p>
+                  <p className="mt-1 text-[9px] font-bold tracking-wider text-white/50 uppercase">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* Process Cards */}
+        <div className="grid gap-6 md:grid-cols-3">
           {processes.map((process, index) => (
             <div
               key={process.id}
-              className={`group relative rounded-[2.5rem] border border-stone-200 bg-white p-10 transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_40px_80px_-20px_rgba(153,27,27,0.1)] hover:border-red-200 ${
+              className={`group relative overflow-hidden rounded-2xl border border-red-900 bg-red-900/20 p-8 backdrop-blur-sm transition-all duration-500 hover:border-yellow-400/50 hover:shadow-[0_20px_60px_-15px_rgba(250,204,21,0.15)] ${
                 isVisible ? 'animate-blur-in' : 'opacity-0'
               }`}
-              style={{ animationDelay: `${index * 200}ms` }}
+              style={{ animationDelay: `${600 + index * 150}ms` }}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -5;
+                const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 5;
+                e.currentTarget.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+              }}
             >
-              <div className="pointer-events-none absolute top-8 right-10 text-6xl font-black text-stone-50 transition-colors group-hover:text-red-50">
+              {/* Step number watermark */}
+              <span className="absolute -top-2 -right-2 font-serif text-[80px] font-black leading-none text-red-900 transition-colors group-hover:text-red-800">
                 {process.step}
-              </div>
+              </span>
 
-              <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-950 text-white shadow-xl shadow-stone-950/20 transition-all duration-500 group-hover:scale-110 group-hover:bg-red-800 group-hover:shadow-red-800/30">
-                {process.icon}
-              </div>
+              <div className="relative mb-6 text-4xl">{process.icon}</div>
 
-              <h4 className="mb-4 font-serif text-2xl font-bold text-stone-900">
+              <h4 className="relative mb-3 font-serif text-xl font-bold text-white">
                 {process.title}
               </h4>
-              <p className="text-sm leading-relaxed text-stone-500 transition-colors group-hover:text-stone-700">
+              <p className="relative text-sm leading-relaxed text-white/60">
                 {process.description}
               </p>
 
-              <div className="mt-8 h-1 w-8 bg-stone-100 transition-all duration-700 group-hover:w-full group-hover:bg-gradient-to-r group-hover:from-red-700 group-hover:to-yellow-400" />
+              {/* Bottom accent */}
+              <div className="mt-6 h-0.5 w-10 bg-red-800 transition-all duration-500 group-hover:w-full group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-amber-500" />
             </div>
           ))}
         </div>
       </div>
 
       <style>{`
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0) rotate(12deg); }
-          50% { transform: translateY(-15px) rotate(15deg); }
-        }
-
-        .animate-bounce-slow {
-          animation: bounce-slow 4s ease-in-out infinite;
+        @keyframes slowSpin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </section>

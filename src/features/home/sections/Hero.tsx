@@ -9,21 +9,21 @@ interface HeroProps {
 const Hero = ({ onNavigate }: HeroProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 100);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      if (!containerRef.current) {
-        return;
-      }
-
+      if (!containerRef.current) return;
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = (event.clientY / window.innerHeight) * 2 - 1;
-
       setMousePos({ x, y });
     };
-
     window.addEventListener('mousemove', handleMouseMove);
-
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
@@ -31,130 +31,145 @@ const Hero = ({ onNavigate }: HeroProps) => {
     <section
       id="hero"
       ref={containerRef}
-      className="relative flex h-screen items-center justify-center overflow-hidden bg-stone-900"
+      className="relative flex h-screen items-center justify-center overflow-hidden bg-red-950"
     >
-      {/* Parallax Background */}
+      {/* Background Image with Parallax */}
       <div
-        className="absolute inset-0 z-0 overflow-hidden"
+        className="absolute inset-0 z-0"
         style={{
-          transform: `translate(${mousePos.x * -10}px, ${mousePos.y * -10}px) scale(1.1)`,
-          transition: 'transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
+          transform: `translate3d(${mousePos.x * -8}px, ${mousePos.y * -8}px, 0) scale(1.1)`,
+          transition: 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         <div
-          className="h-full w-full animate-ken-burns bg-cover bg-center"
+          className="h-full w-full bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1920&auto=format&fit=crop')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1920&auto=format&fit=crop')",
+            animation: 'heroZoom 30s ease-in-out infinite alternate',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-950/70 via-stone-950/50 to-stone-950/80" />
       </div>
 
-      {/* Animated red & yellow glow orbs */}
-      <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
-        <div className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-red-900/20 blur-[200px] animate-hero-glow-1" />
-        <div className="absolute -right-40 -bottom-40 h-[500px] w-[500px] rounded-full bg-yellow-500/15 blur-[180px] animate-hero-glow-2" />
-        <div className="absolute top-1/2 left-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-800/10 blur-[150px] animate-hero-glow-3" />
+      {/* Cinematic Overlay */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-red-950/80 via-red-950/40 to-red-950" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-r from-red-900/30 via-transparent to-red-900/30" />
+
+      {/* Decorative Lines */}
+      <div className="pointer-events-none absolute inset-0 z-[3]">
+        <div className="absolute top-0 left-1/4 h-full w-px bg-gradient-to-b from-transparent via-white/5 to-transparent" />
+        <div className="absolute top-0 left-2/4 h-full w-px bg-gradient-to-b from-transparent via-white/5 to-transparent" />
+        <div className="absolute top-0 left-3/4 h-full w-px bg-gradient-to-b from-transparent via-white/5 to-transparent" />
       </div>
 
-      <div className="relative z-20 container mx-auto px-6 text-center">
-        <div className="mx-auto max-w-5xl">
-          <h1 className="mb-8 text-6xl font-bold leading-[0.9] tracking-tighter text-white select-none md:text-[9rem]">
+      {/* Soft Glow Orbs */}
+      <div className="pointer-events-none absolute inset-0 z-[4]">
+        <div className="absolute top-[20%] left-[15%] h-[400px] w-[400px] rounded-full bg-red-900/15 blur-[150px]" style={{ animation: 'glowPulse 8s ease-in-out infinite' }} />
+        <div className="absolute bottom-[10%] right-[10%] h-[350px] w-[350px] rounded-full bg-yellow-600/10 blur-[130px]" style={{ animation: 'glowPulse 10s ease-in-out infinite 2s' }} />
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 container mx-auto px-6">
+        <div className="mx-auto max-w-5xl text-center">
+          {/* Top badge */}
+          <div
+            className={`mb-8 transition-all duration-[1.8s] ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+            style={{ transitionDelay: '0.2s' }}
+          >
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-[10px] font-bold tracking-[0.4em] text-white/60 uppercase backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-red-600 animate-pulse" />
+              Warkop & Sop Saudara
+            </span>
+          </div>
+
+          {/* Title */}
+          <h1 className="mb-10 select-none">
             <span
-              className="block animate-blur-in opacity-0 delay-200"
-              style={{ animationFillMode: 'forwards' }}
+              className={`block font-serif text-7xl font-bold tracking-tight text-white md:text-[10rem] md:leading-[0.85] transition-all duration-[1.8s] ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+              style={{ transitionDelay: '0.4s' }}
             >
               Warkop
             </span>
             <span
-              className="font-handwriting block animate-blur-in bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent italic opacity-0 delay-300"
-              style={{ animationFillMode: 'forwards' }}
+              className={`font-handwriting mt-2 block text-6xl text-yellow-400 italic md:text-[8rem] md:leading-[0.9] transition-all duration-[1.8s] ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
+              style={{ transitionDelay: '0.7s', textShadow: '0 0 80px rgba(250,204,21,0.15)' }}
             >
               Azzahra
             </span>
           </h1>
 
+          {/* Divider */}
           <div
-            className="mx-auto mt-10 mb-16 max-w-2xl animate-blur-in opacity-0 delay-500"
-            style={{ animationFillMode: 'forwards' }}
+            className={`mx-auto mb-10 flex items-center justify-center gap-4 transition-all duration-[1.8s] ${loaded ? 'translate-y-0 opacity-100 scale-x-100' : 'translate-y-8 opacity-0 scale-x-0'}`}
+            style={{ transitionDelay: '1s' }}
           >
-            <p className="font-serif-text text-lg leading-relaxed text-white/70 italic md:text-2xl">
-              &quot;Temukan harmoni rasa dalam setiap sajian makanan dan minuman
-              spesial kami.&quot;
-            </p>
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-red-700/50" />
+            <div className="h-2 w-2 rotate-45 border border-yellow-400/40" />
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-red-700/50" />
           </div>
 
+          {/* Subtitle */}
+          <p
+            className={`font-serif-text mx-auto max-w-xl text-lg leading-relaxed text-white/50 italic md:text-xl transition-all duration-[1.8s] ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+            style={{ transitionDelay: '1.2s' }}
+          >
+            &quot;Temukan harmoni rasa dalam setiap sajian makanan dan minuman spesial kami.&quot;
+          </p>
+
+          {/* CTA Buttons */}
           <div
-            className="flex flex-col items-center justify-center gap-6 animate-blur-in opacity-0 delay-700 sm:flex-row"
-            style={{ animationFillMode: 'forwards' }}
+            className={`mt-14 flex flex-col items-center justify-center gap-5 sm:flex-row transition-all duration-[1.8s] ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+            style={{ transitionDelay: '1.5s' }}
           >
             <button
               onClick={() => onNavigate('menu')}
-              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-red-800 to-red-700 px-10 py-4 text-sm font-black text-white transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_rgba(153,27,27,0.5)] active:scale-95"
+              className="group relative overflow-hidden rounded-full bg-red-800 px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-white transition-all duration-500 hover:bg-red-700 hover:shadow-[0_0_40px_rgba(153,27,27,0.4)] active:scale-95"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <span className="relative z-10 flex items-center gap-3 uppercase tracking-widest group-hover:text-stone-900">
+              <span className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-[100%]" />
+              <span className="relative flex items-center gap-3">
                 Eksplor Menu
-                <svg
-                  className="h-4 w-4 transition-transform group-hover:translate-x-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
+                <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </span>
             </button>
 
             <button
-              onClick={() => onNavigate('promo')}
-              className="rounded-full border-2 border-yellow-400/30 px-10 py-4 text-sm font-bold uppercase tracking-widest text-yellow-300 backdrop-blur-sm transition-all hover:border-yellow-400/60 hover:bg-yellow-400/10 hover:text-yellow-200 hover:shadow-[0_0_30px_rgba(250,204,21,0.15)]"
+              onClick={() => onNavigate('reservasi')}
+              className="rounded-full border border-white/15 px-10 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white/70 transition-all duration-500 hover:border-yellow-400/40 hover:text-yellow-300 hover:bg-yellow-400/5"
             >
-              Promo Spesial
+              Reservasi Tempat
             </button>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2 animate-bounce-slow">
-        <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/20 p-1.5">
-          <div className="h-2 w-1 rounded-full bg-yellow-400 animate-scroll-dot" />
+      {/* Bottom Gradient Fade */}
+      <div className="absolute bottom-0 left-0 right-0 z-[5] h-32 bg-gradient-to-t from-red-950 to-transparent" />
+
+      {/* Scroll Indicator */}
+      <div
+        className={`absolute bottom-16 left-1/2 z-10 -translate-x-1/2 transition-all duration-[1.8s] ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        style={{ transitionDelay: '2s' }}
+      >
+        <div className="flex flex-col items-center gap-3" style={{ animation: 'floatUpDown 3s ease-in-out infinite' }}>
+          <span className="text-[8px] font-bold tracking-[0.5em] text-white/25 uppercase">Scroll</span>
+          <div className="h-8 w-[1px] bg-gradient-to-b from-white/30 to-transparent" />
         </div>
       </div>
 
       <style>{`
-        @keyframes hero-glow-1 {
-          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
-          50% { transform: translate(40px, 30px) scale(1.1); opacity: 0.35; }
+        @keyframes heroZoom {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.08); }
         }
-        @keyframes hero-glow-2 {
-          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
-          50% { transform: translate(-30px, -20px) scale(1.15); opacity: 0.25; }
+        @keyframes glowPulse {
+          0%, 100% { opacity: 0.6; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.15); }
         }
-        @keyframes hero-glow-3 {
-          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
-          50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.2; }
+        @keyframes floatUpDown {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
         }
-        .animate-hero-glow-1 { animation: hero-glow-1 8s ease-in-out infinite; }
-        .animate-hero-glow-2 { animation: hero-glow-2 10s ease-in-out infinite; }
-        .animate-hero-glow-3 { animation: hero-glow-3 6s ease-in-out infinite; }
-        @keyframes scroll-dot {
-          0%, 100% { opacity: 0; transform: translateY(0); }
-          50% { opacity: 1; transform: translateY(8px); }
-        }
-        .animate-scroll-dot { animation: scroll-dot 2s ease-in-out infinite; }
-        @keyframes bounce-slow-hero {
-          0%, 100% { transform: translateX(-50%) translateY(0); }
-          50% { transform: translateX(-50%) translateY(-8px); }
-        }
-        .animate-bounce-slow { animation: bounce-slow-hero 3s ease-in-out infinite; }
       `}</style>
     </section>
   );

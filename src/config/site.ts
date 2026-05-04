@@ -18,6 +18,12 @@ export const SITE_CONFIG = {
     mapsEmbedUrl:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63589.38719101!2d119.47520256042479!3d-5.049051687753289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbef93b7ed6d053%3A0x5f79f0ab5ec844b5!2sWarkop%20%26%20Sop%20Saudara%20Azzahra!5e0!3m2!1sen!2sid!4v1767877951475!5m2!1sen!2sid',
   },
+  outlets: [
+    { name: 'Belang-belang (Pusat)', phone: '+62 812-2255-5217', whatsappNumber: '6281222555217' },
+    { name: 'Pontiku', phone: '+62 823-3335-5537', whatsappNumber: '6282333355537' },
+    { name: 'Gowa', phone: '+62 823-3335-5538', whatsappNumber: '6282333355538' },
+    { name: 'Tanjung', phone: '+62 822-2651-3872', whatsappNumber: '6282226513872' },
+  ],
   assets: {
     careerPoster: '/asset/image.png',
   },

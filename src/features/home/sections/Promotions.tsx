@@ -13,77 +13,84 @@ const Promotions = ({ onNavigate }: PromotionsProps) => {
   const isVisible = useRevealOnIntersect(sectionRef);
 
   return (
-    <section
-      id="promo"
-      ref={sectionRef}
-      className="relative overflow-hidden bg-stone-950 py-32"
-    >
-      <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
-        <div className="animate-float-gentle absolute -top-[20%] left-[20%] h-[800px] w-[800px] rounded-full bg-red-900/10 blur-[150px]" />
-        <div className="animate-float-gentle absolute -bottom-[10%] right-[10%] h-[600px] w-[600px] rounded-full bg-yellow-900/8 blur-[120px]" />
+    <section id="promo" ref={sectionRef} className="relative overflow-hidden bg-red-950 py-28 lg:py-36">
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-20 -right-20 h-[500px] w-[500px] rounded-full bg-red-900/40 blur-[150px]" />
+        <div className="absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full bg-yellow-600/10 blur-[120px]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-6 lg:px-12">
-        <div className="mb-20 text-center animate-blur-in">
-          <span className="mb-4 block text-xs font-bold tracking-[0.4em] text-yellow-400 uppercase">
-            Limited Offers
+        {/* Header */}
+        <div className={`mb-20 text-center ${isVisible ? 'animate-blur-in' : 'opacity-0'}`}>
+          <span className="mb-4 inline-block text-[10px] font-bold tracking-[0.5em] text-yellow-400/80 uppercase">
+            Penawaran Spesial
           </span>
-          <h2 className="font-serif text-5xl font-bold leading-tight text-white md:text-7xl">
-            Curated <span className="text-red-800/60 italic">Promotions</span>
+          <h2 className="font-serif text-4xl font-bold text-white md:text-6xl lg:text-7xl">
+            Promo{' '}
+            <span className="bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent italic">Terbaru</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2">
           {PROMOTIONS_LIST.map((promo, index) => (
             <div
               key={promo.id}
-              className={`group relative h-[450px] cursor-pointer overflow-hidden rounded-[2rem] shadow-2xl ${
+              className={`group relative cursor-pointer overflow-hidden rounded-[2rem] transition-all duration-500 ${
                 isVisible ? 'animate-blur-in' : 'opacity-0'
               }`}
-              style={{ animationDelay: `${index * 200}ms` }}
+              style={{
+                animationDelay: `${index * 200}ms`,
+                transformStyle: 'preserve-3d',
+              }}
               onClick={() => onNavigate('menu')}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -4;
+                const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 4;
+                e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+              }}
             >
-              <div className="absolute inset-0 overflow-hidden">
+              {/* Image */}
+              <div className="relative h-[450px] overflow-hidden rounded-[2rem] border border-stone-200 shadow-xl shadow-stone-900/5">
                 <img
                   src={promo.imageUrl}
                   alt={promo.title}
-                  className="h-full w-full animate-ken-burns object-cover opacity-80 transition-opacity duration-700 group-hover:opacity-100"
+                  className="h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                 />
-              </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent" />
 
-              <div className="absolute inset-x-6 bottom-6 rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-md transition-transform duration-500 group-hover:-translate-y-[10px]">
-                <div className="mb-4 flex items-start justify-between">
-                  <h3 className="font-serif text-3xl font-bold text-white transition-colors group-hover:text-yellow-200">
-                    {promo.title}
-                  </h3>
-                  <span className="rounded-full bg-red-800 px-3 py-1 text-[10px] font-bold tracking-widest text-white uppercase">
+                {/* Badge */}
+                <div className="absolute top-6 right-6">
+                  <div className="rounded-full bg-red-800 px-4 py-1.5 text-[9px] font-black tracking-[0.2em] text-white uppercase shadow-lg shadow-red-900/30">
                     Promo
-                  </span>
+                  </div>
                 </div>
 
-                <p className="mb-6 line-clamp-2 text-base leading-relaxed text-stone-300 transition-all group-hover:line-clamp-none">
-                  {promo.description}
-                </p>
+                {/* Content */}
+                <div className="absolute inset-x-0 bottom-0 p-8">
+                  <h3 className="mb-3 font-serif text-3xl font-bold text-white transition-colors group-hover:text-yellow-300">
+                    {promo.title}
+                  </h3>
+                  <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-white/60 transition-colors group-hover:text-white/80">
+                    {promo.description}
+                  </p>
 
-                <div className="flex items-center gap-3">
-                  <span className="border-b border-white/20 pb-1 text-xs font-bold tracking-widest text-white/60 uppercase transition-all group-hover:border-yellow-400 group-hover:text-yellow-400">
-                    Claim Offer
-                  </span>
-                  <svg
-                    className="h-4 w-4 text-white/60 transition-transform duration-300 group-hover:translate-x-2 group-hover:text-yellow-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white backdrop-blur-sm transition-all group-hover:bg-red-800 group-hover:shadow-lg">
+                      Lihat Menu
+                      <svg className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

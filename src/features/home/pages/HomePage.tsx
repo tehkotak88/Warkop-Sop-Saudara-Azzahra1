@@ -1,6 +1,7 @@
 import Header from '../../../components/layout/Header';
 import Footer from '../../../components/layout/Footer';
 import WhatsAppPopup from '../../../components/layout/WhatsAppPopup';
+import FloatingElements from '../../../components/layout/FloatingElements';
 import { SectionId } from '../../../types/app';
 import About from '../sections/About';
 import Careers from '../sections/Careers';
@@ -16,7 +17,7 @@ interface HomePageProps {
 
 const HomePage = ({ onNavigate }: HomePageProps) => {
   return (
-    <div className="min-h-screen bg-[#fffaf5] font-sans text-stone-800">
+    <div className="min-h-screen bg-red-950 font-sans text-white">
       <Header onNavigate={onNavigate} />
       <main>
         <Hero onNavigate={onNavigate} />
@@ -28,6 +29,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
         <Contact />
       </main>
       <Footer />
+      <FloatingElements />
       <WhatsAppPopup />
     </div>
   );
