@@ -145,7 +145,6 @@ const ProductDetailModal = ({
         itemPrice={item.price}
       />
     </>
-    </>
   );
 };
 
