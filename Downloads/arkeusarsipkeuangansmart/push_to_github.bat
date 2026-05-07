@@ -1,21 +1,35 @@
 @echo off
-echo Mengganti nama folder...
 cd /d "%~dp0"
-if exist "SIMPEG-main" (
-    ren "SIMPEG-main" "arkeusarsipkeuangansmart"
+
+echo [1/3] Masuk ke folder proyek...
+if exist "package.json" (
+    echo [OK] Sudah berada di folder proyek.
+) else if exist "SIMPEG-main\package.json" (
+    cd SIMPEG-main
+) else if exist "arkeusarsipkeuangansmart\package.json" (
+    cd arkeusarsipkeuangansmart
 )
 
-echo Masuk ke folder proyek...
-cd arkeusarsipkeuangansmart
-
-echo Menambahkan perubahan ke Git...
+echo [2/3] Mencoba Commit...
 git add .
+git commit -m "Add Quick Filter Chips and update Firestore security rules"
 
-echo Melakukan commit...
-git commit -m "Rebrand to arkeusarsipkeuangansmart and update configurations"
+echo [3/3] Mencoba Push ke semua kemungkinan cabang...
+:: Menggunakan HEAD untuk push cabang yang sedang aktif saat ini
+git push origin HEAD
 
-echo Melakukan push ke GitHub...
-git push origin main
+if %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo PUSH GAGAL. Mencoba paksa ke main...
+    git push origin main
+)
 
+if %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo MASIH GAGAL. Mencoba ke master...
+    git push origin master
+)
+
+echo.
 echo Selesai!
 pause
