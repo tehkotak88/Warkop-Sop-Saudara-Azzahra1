@@ -7,6 +7,7 @@ import About from '../sections/About';
 import Careers from '../sections/Careers';
 import Contact from '../sections/Contact';
 import Hero from '../sections/Hero';
+import InstagramFeed from '../sections/InstagramFeed';
 import MenuPreview from '../sections/MenuPreview';
 import Promotions from '../sections/Promotions';
 import Reservation from '../sections/Reservation';
@@ -26,6 +27,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
         <Promotions onNavigate={onNavigate} />
         <Careers />
         <Reservation />
+        <InstagramFeed />
         <Contact />
       </main>
       <Footer />
