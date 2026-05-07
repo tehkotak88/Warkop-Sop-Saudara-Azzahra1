@@ -2,12 +2,12 @@ import { SITE_CONFIG } from '../../../config/site';
 
 const InstagramFeed = () => {
   const posts = [
-    { id: 1, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_1_coffee_1778179102999.png', likes: '1.2k', comments: '45' },
-    { id: 2, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_2_soup_1778179119350.png', likes: '890', comments: '32' },
-    { id: 3, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_3_interior_1778179135070.png', likes: '2.5k', comments: '120' },
-    { id: 4, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_4_friends_1778179157150.png', likes: '1.8k', comments: '67' },
-    { id: 5, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_5_detail_1778179173145.png', likes: '950', comments: '28' },
-    { id: 6, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_6_pastry_1778179186871.png', likes: '1.1k', comments: '54' },
+    { id: 1, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_1_nature_1778179871834.png', likes: '1.5k', comments: '62' },
+    { id: 2, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_2_gowa_1778179885916.png', likes: '920', comments: '41' },
+    { id: 3, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_3_eid_1778179900544.png', likes: '2.1k', comments: '85' },
+    { id: 4, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_4_lunch_1778179914129.png', likes: '1.2k', comments: '56' },
+    { id: 5, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_5_rugidong_1778179929552.png', likes: '3.4k', comments: '150' },
+    { id: 6, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_6_branding_yellow_1778179944484.png', likes: '850', comments: '12' },
   ];
 
   return (
