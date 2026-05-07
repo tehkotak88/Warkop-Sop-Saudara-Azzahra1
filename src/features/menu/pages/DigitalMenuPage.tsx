@@ -5,6 +5,7 @@ import { formatCompactPrice } from '../../../lib/format';
 import { filterMenuItems } from '../../../lib/menu';
 import { MenuFilter, MenuItem } from '../../../types/menu';
 import ProductDetailModal from '../components/ProductDetailModal';
+import QRISPaymentModal from '../components/QRISPaymentModal';
 
 interface DigitalMenuPageProps {
   onNavigateHome: () => void;
@@ -16,6 +17,7 @@ const DigitalMenuPage = ({ onNavigateHome }: DigitalMenuPageProps) => {
   const { menuItems } = useMenu();
   const [activeFilter, setActiveFilter] = useState<MenuFilter>('all');
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [isQrisOpen, setIsQrisOpen] = useState(false);
 
   const filteredItems = useMemo(
     () =>
@@ -29,7 +31,7 @@ const DigitalMenuPage = ({ onNavigateHome }: DigitalMenuPageProps) => {
   );
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pb-24 text-white selection:bg-yellow-500 selection:text-black">
+    <div className="min-h-screen bg-[#0a0a0a] pb-32 text-white selection:bg-yellow-500 selection:text-black">
       {/* Premium Header */}
       <div className="relative h-64 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-red-900/40 to-[#0a0a0a]" />
@@ -133,10 +135,28 @@ const DigitalMenuPage = ({ onNavigateHome }: DigitalMenuPageProps) => {
         </footer>
       </div>
 
+      {/* Floating QRIS Button */}
+      <div className="fixed bottom-6 left-0 right-0 z-40 flex justify-center px-6">
+        <button
+          onClick={() => setIsQrisOpen(true)}
+          className="flex items-center gap-3 rounded-full bg-yellow-500 px-8 py-4 font-bold text-stone-950 shadow-2xl shadow-yellow-500/20 transition-all hover:scale-105 active:scale-95"
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+          </svg>
+          <span className="text-xs tracking-widest uppercase">Bayar via QRIS</span>
+        </button>
+      </div>
+
       <ProductDetailModal
         item={selectedItem}
         isOpen={Boolean(selectedItem)}
         onClose={() => setSelectedItem(null)}
+      />
+
+      <QRISPaymentModal
+        isOpen={isQrisOpen}
+        onClose={() => setIsQrisOpen(false)}
       />
     </div>
   );
