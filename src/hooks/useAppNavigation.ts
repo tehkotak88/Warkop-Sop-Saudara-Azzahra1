@@ -10,7 +10,7 @@ const normalizePath = (pathname: string): AppPath => {
       : pathname;
 
   if (trimmedPath === '/menu') return '/menu';
-  if (trimmedPath === '/qr') return '/qr';
+  if (trimmedPath === '/digital-menu') return '/digital-menu';
   return '/';
 };
 
@@ -38,10 +38,8 @@ export const useAppNavigation = () => {
   }, []);
 
   useEffect(() => {
-    if (currentPath === '/menu') {
+    if (currentPath === '/menu' || currentPath === '/digital-menu') {
       document.title = SITE_CONFIG.titles.menu;
-    } else if (currentPath === '/qr') {
-      document.title = 'QR Digital Menu | Warkop Azzahra';
     } else {
       document.title = SITE_CONFIG.titles.home;
     }

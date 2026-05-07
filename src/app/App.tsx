@@ -1,6 +1,6 @@
 import HomePage from '../features/home/pages/HomePage';
 import MenuPage from '../features/menu/pages/MenuPage';
-import QRPage from '../features/menu/pages/QRPage';
+import DigitalMenuPage from '../features/menu/pages/DigitalMenuPage';
 import { useAppNavigation } from '../hooks/useAppNavigation';
 import { MenuProvider } from './MenuContext';
 
@@ -11,8 +11,8 @@ const App = () => {
     switch (currentPath) {
       case '/menu':
         return <MenuPage onNavigateHome={() => navigateToPath('/')} />;
-      case '/qr':
-        return <QRPage onNavigateHome={() => navigateToPath('/')} />;
+      case '/digital-menu':
+        return <DigitalMenuPage onNavigateHome={() => navigateToPath('/')} />;
       default:
         return <HomePage onNavigate={navigateToSection} />;
     }
