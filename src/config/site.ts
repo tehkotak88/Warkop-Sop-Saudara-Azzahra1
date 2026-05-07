@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
     menu: 'Menu Digital | Warkop Azzahra',
   },
   contact: {
-    whatsappNumber: '62085256669994',
+    whatsappNumber: '6285256669994',
     displayPhone: '+62 852-5666-9994',
     whatsappMessage:
       'Halo Warkop Azzahra, saya ingin bertanya mengenai menu dan pemesanan.',

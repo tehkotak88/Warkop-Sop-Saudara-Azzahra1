@@ -7,7 +7,7 @@ interface QRISPageProps {
 const QRISPage = ({ onNavigateHome }: QRISPageProps) => {
   const handleWhatsAppConfirm = () => {
     const message = 'Halo, saya sudah melakukan pembayaran via QRIS.';
-    const whatsappUrl = `https://wa.me/${SITE_CONFIG.contact.whatsapp}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${SITE_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

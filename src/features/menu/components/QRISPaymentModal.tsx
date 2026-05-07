@@ -13,9 +13,9 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
   const handleWhatsAppConfirm = () => {
     let message = 'Halo, saya sudah melakukan pembayaran via QRIS.';
     if (itemName) {
-      message = `Halo, saya memesan ${itemName} dan sudah melakukan pembayaran via QRIS.`;
+      message = `Halo, saya memesan ${itemName}${itemPrice ? ` (Rp ${itemPrice.toLocaleString('id-ID')})` : ''} dan sudah melakukan pembayaran via QRIS.`;
     }
-    const whatsappUrl = `https://wa.me/${SITE_CONFIG.contact.whatsapp}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${SITE_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

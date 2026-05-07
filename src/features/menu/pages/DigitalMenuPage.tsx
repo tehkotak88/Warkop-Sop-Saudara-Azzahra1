@@ -94,7 +94,7 @@ const DigitalMenuPage = ({ onNavigateHome }: DigitalMenuPageProps) => {
                 <div className="mb-1 flex items-start justify-between gap-2">
                   <h3 className="text-lg font-bold text-white line-clamp-1">{item.name}</h3>
                   <span className="text-sm font-bold text-yellow-500">
-                    {formatCompactPrice(item.price)}
+                    {formatCompactPrice(item.price)}k
                   </span>
                 </div>
                 <p className="mb-2 text-xs text-white/40 line-clamp-2 leading-relaxed">
