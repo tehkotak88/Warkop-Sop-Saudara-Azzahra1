@@ -2,12 +2,12 @@ import { SITE_CONFIG } from '../../../config/site';
 
 const InstagramFeed = () => {
   const posts = [
-    { id: 1, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_crew_red_1778180569390.png', likes: '166', comments: '12' },
-    { id: 2, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_teaser_forest_1778180585372.png', likes: '245', comments: '18' },
-    { id: 3, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_crowd_gowa_1778180603503.png', likes: '890', comments: '45' },
-    { id: 4, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_exterior_sign_1778180620462.png', likes: '530', comments: '22' },
-    { id: 5, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_matcha_series_1778180635447.png', likes: '1.2k', comments: '67' },
-    { id: 6, url: 'C:\\Users\\asusn\\.gemini\\antigravity\\brain\\fd1e0deb-55d3-40e3-a1c2-c188c39aa70d\\ig_post_5_rugidong_1778179929552.png', likes: '3.4k', comments: '150' },
+    { id: 1, url: '/instagram/feeds1.png', likes: '166', comments: '12' },
+    { id: 2, url: '/instagram/feeds2.png', likes: '245', comments: '18' },
+    { id: 3, url: '/instagram/feeds3.png', likes: '890', comments: '45' },
+    { id: 4, url: '/instagram/feeds4.png', likes: '530', comments: '22' },
+    { id: 5, url: '/instagram/feeds5.png', likes: '1.2k', comments: '67' },
+    { id: 6, url: '/instagram/feeds6.png', likes: '3.4k', comments: '150' },
   ];
 
   return (
