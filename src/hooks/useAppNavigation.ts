@@ -9,7 +9,9 @@ const normalizePath = (pathname: string): AppPath => {
       ? pathname.slice(0, -1)
       : pathname;
 
-  return trimmedPath === '/menu' ? '/menu' : '/';
+  if (trimmedPath === '/menu') return '/menu';
+  if (trimmedPath === '/qr') return '/qr';
+  return '/';
 };
 
 const scrollToSection = (sectionId: SectionId) => {
@@ -36,10 +38,13 @@ export const useAppNavigation = () => {
   }, []);
 
   useEffect(() => {
-    document.title =
-      currentPath === '/menu'
-        ? SITE_CONFIG.titles.menu
-        : SITE_CONFIG.titles.home;
+    if (currentPath === '/menu') {
+      document.title = SITE_CONFIG.titles.menu;
+    } else if (currentPath === '/qr') {
+      document.title = 'QR Digital Menu | Warkop Azzahra';
+    } else {
+      document.title = SITE_CONFIG.titles.home;
+    }
   }, [currentPath]);
 
   const navigateToPath = (path: AppPath) => {

@@ -6,8 +6,6 @@ import { MenuItem, MenuType } from '../../../types/menu';
 import MenuCard from '../../menu/components/MenuCard';
 import ProductDetailModal from '../../menu/components/ProductDetailModal';
 
-import MenuQRSection from '../../menu/components/MenuQRSection';
-
 const MenuPreview = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeType, setActiveType] = useState<MenuType>('beverage');
@@ -108,9 +106,6 @@ const MenuPreview = () => {
             </p>
           </div>
         )}
-
-        {/* QR Section */}
-        <MenuQRSection />
       </div>
 
       <ProductDetailModal
