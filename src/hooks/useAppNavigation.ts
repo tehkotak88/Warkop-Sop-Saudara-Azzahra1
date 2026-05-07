@@ -11,6 +11,7 @@ const normalizePath = (pathname: string): AppPath => {
 
   if (trimmedPath === '/menu') return '/menu';
   if (trimmedPath === '/digital-menu') return '/digital-menu';
+  if (trimmedPath === '/qris') return '/qris';
   return '/';
 };
 
