@@ -5,7 +5,7 @@ const InstagramFeed = () => {
     // feeds1 = "Sedekah Tiap Jumat" reel (27 Jul 2025) → Post #1 on IG grid
     { id: 1, url: '/instagram/feeds1.png', likes: '86', comments: '5', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
     // feeds2 = "Masih Pagi Udah Rame" interior reel (ngemil_lucu, 19 Jul 2025) → Post #2
-    { id: 2, url: '/instagram/feeds2.png', likes: '28', comments: '0', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
+    { id: 2, url: '/instagram/feeds2.png', likes: '303', comments: '10', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
     // feeds3 = "Minza mau buat minuman baru" red cup PHOTO (23 Ags 2025) → Post #3 — this is a PHOTO
     { id: 3, url: '/instagram/feeds3.png', likes: '303', comments: '1', type: 'photo', link: 'https://www.instagram.com/warkopsop_azzahra/' },
     // feeds6 = "Singgah Belanja Roti Maros" reel (ngemil_lucu) → Post #4 — 7.9K likes
