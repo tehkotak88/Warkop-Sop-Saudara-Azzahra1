@@ -1,8 +1,8 @@
-import { FC, useCallback, useRef } from 'react';
+import { FC } from 'react';
 
-import { useRevealOnIntersect } from '../../../hooks/useRevealOnIntersect';
 import { formatCurrency } from '../../../lib/format';
 import { MenuItem } from '../../../types/menu';
+import Tilt3DCard from '../../../components/layout/Tilt3DCard';
 
 interface MenuCardProps {
   item: MenuItem;
@@ -11,79 +11,74 @@ interface MenuCardProps {
 }
 
 const MenuCard: FC<MenuCardProps> = ({ item, index = 0, onViewDetail }) => {
-  const elementRef = useRef<HTMLDivElement>(null);
-  const isVisible = useRevealOnIntersect(elementRef);
   const animationDelay = `${(index % 12) * 60}ms`;
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = elementRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
-    card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    const card = elementRef.current;
-    if (card) {
-      card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    }
-  }, []);
-
   return (
-    <div
-      ref={elementRef}
-      onClick={() => onViewDetail?.(item)}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`group relative cursor-pointer overflow-hidden rounded-2xl border border-stone-800 bg-stone-900/60 p-2.5 backdrop-blur-sm transition-all duration-300 hover:border-red-800/40 hover:shadow-[0_15px_40px_-10px_rgba(153,27,27,0.2)] ${
-        isVisible ? 'animate-blur-in' : 'opacity-0'
-      }`}
-      style={{
-        animationDelay: isVisible ? animationDelay : '0ms',
-        animationFillMode: 'forwards',
-        transformStyle: 'preserve-3d',
-        willChange: 'transform',
-      }}
+    <Tilt3DCard
+      intensity={12}
+      scale={1.05}
+      className="h-full"
+      glareEnabled={true}
     >
-      <div className="relative mb-3 aspect-square w-full overflow-hidden rounded-xl bg-stone-800">
-        <img
-          src={item.imageUrl}
-          alt={item.name}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div
+        onClick={() => onViewDetail?.(item)}
+        className="group relative h-full cursor-pointer overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-stone-900/80 to-black/90 p-3 backdrop-blur-xl transition-all duration-500 hover:border-red-500/30 hover:shadow-[0_25px_50px_-12px_rgba(153,27,27,0.5)]"
+        style={{
+          animation: `blur-in 0.6s ease-out ${animationDelay} both`,
+          transformStyle: 'preserve-3d',
+        }}
+      >
+        {/* Background Highlight */}
+        <div className="absolute -inset-2 bg-gradient-to-tr from-red-600/0 via-red-600/0 to-red-600/10 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+        
+        {/* Image Container with Parallax */}
+        <div className="tilt-child relative mb-4 aspect-[4/5] w-full overflow-hidden rounded-2xl bg-stone-800" data-depth="15">
+          <img
+            src={item.imageUrl}
+            alt={item.name}
+            className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80" />
+          
+          {/* Badge with Parallax */}
+          {item.category !== 'standard' && (
+            <div className="tilt-child absolute top-3 left-3" data-depth="25">
+              <span
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[8px] font-black tracking-[0.2em] text-white uppercase backdrop-blur-md shadow-2xl ${
+                  item.category === 'best-seller'
+                    ? 'bg-red-600/80 ring-1 ring-red-400/50'
+                    : 'bg-stone-900/80 ring-1 ring-white/20'
+                }`}
+              >
+                <span className={`h-1 w-1 rounded-full animate-pulse ${item.category === 'best-seller' ? 'bg-yellow-400' : 'bg-blue-400'}`} />
+                {item.category === 'best-seller' ? 'Best Seller' : 'New Arrival'}
+              </span>
+            </div>
+          )}
+        </div>
 
-        {item.category !== 'standard' && (
-          <div className="absolute top-2 left-2">
-            <span
-              className={`rounded-full px-2.5 py-1 text-[7px] font-black tracking-widest text-white uppercase ${
-                item.category === 'best-seller'
-                  ? 'bg-gradient-to-r from-red-800 to-red-700 shadow-sm shadow-red-900/30'
-                  : 'bg-white/15 backdrop-blur-sm'
-              }`}
-            >
-              {item.category === 'best-seller' ? '🔥 HOT' : '✨ NEW'}
-            </span>
+        {/* Info Content with Parallax */}
+        <div className="tilt-child relative space-y-2 px-1 text-center" data-depth="10">
+          <h3 className="line-clamp-2 min-h-[2.5rem] text-[13px] font-bold leading-tight text-white/90 transition-colors group-hover:text-yellow-400 md:text-[14px]">
+            {item.name}
+          </h3>
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-[10px] font-medium tracking-wider text-white/30 uppercase">IDR</span>
+            <p className="font-serif text-lg font-bold text-white group-hover:scale-110 transition-transform duration-500">
+              {formatCurrency(item.price).replace('Rp', '').trim()}
+            </p>
           </div>
-        )}
-      </div>
+        </div>
 
-      <div className="px-1 text-center">
-        <h3 className="mb-1 line-clamp-1 text-[11px] font-bold text-white/90 transition-colors group-hover:text-yellow-300 md:text-[12px]">
-          {item.name}
-        </h3>
-        <p className="text-[12px] font-black text-white">
-          {formatCurrency(item.price)}
-        </p>
+        {/* Hover Action Button */}
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 translate-y-10 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+           <div className="rounded-full bg-white/10 px-4 py-1.5 text-[9px] font-bold text-white backdrop-blur-md ring-1 ring-white/20">
+             Tap for details
+           </div>
+        </div>
       </div>
-    </div>
+    </Tilt3DCard>
   );
 };
 

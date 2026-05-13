@@ -6,6 +6,7 @@ import { formatCompactPrice } from '../../../lib/format';
 import { filterMenuItems } from '../../../lib/menu';
 import { MenuFilter, MenuItem } from '../../../types/menu';
 import ProductDetailModal from '../components/ProductDetailModal';
+import Tilt3DCard from '../../../components/layout/Tilt3DCard';
 
 interface MenuPageProps {
   onNavigateHome: () => void;
@@ -31,173 +32,170 @@ const MenuPage = ({ onNavigateHome }: MenuPageProps) => {
   );
 
   const renderMenuItem = (item: MenuItem, index: number) => {
-    const isEven = index % 2 === 0;
-
     return (
       <div
         key={item.id}
-        className="animate-item"
-        style={{ animationDelay: `${index * 80}ms` }}
+        className="animate-blur-in"
+        style={{ animationDelay: `${index * 80}ms`, animationFillMode: 'both' }}
       >
-        <div
-          className={`flex items-center gap-4 py-8 sm:gap-12 sm:py-16 ${
-            isEven ? 'flex-row' : 'flex-row-reverse'
-          }`}
-        >
+        <Tilt3DCard intensity={5} scale={1.02} className="w-full">
           <div
-            className={`w-[65%] space-y-2 sm:space-y-4 ${
-              isEven ? 'text-left' : 'text-right'
-            }`}
+            onClick={() => setSelectedItem(item)}
+            className="group relative flex cursor-pointer items-center gap-6 rounded-3xl border border-white/5 bg-white/[0.02] p-4 transition-all duration-500 hover:bg-white/[0.05] hover:border-yellow-500/20"
           >
-            <div
-              className={`flex items-center gap-3 sm:gap-6 ${
-                isEven ? 'justify-start' : 'justify-end'
-              }`}
-            >
-              <h3 className="text-base leading-tight font-extrabold tracking-tighter text-black uppercase sm:text-4xl">
-                {item.name}
-              </h3>
-              {isEven && (
-                <div className="price-circle">
-                  {formatCompactPrice(item.price)}
-                </div>
-              )}
-            </div>
-
-            <p className="text-[11px] leading-snug font-semibold text-stone-800 sm:text-lg sm:leading-relaxed">
-              {item.description}
-            </p>
-
-            {!isEven && (
-              <div className="flex justify-end pt-1">
-                <div className="price-circle">
-                  {formatCompactPrice(item.price)}
-                </div>
-              </div>
-            )}
-
-            <button
-              onClick={() => setSelectedItem(item)}
-              className="text-[9px] font-black tracking-widest text-stone-500 uppercase transition-colors hover:text-black sm:text-[10px]"
-            >
-              DETAILS -
-            </button>
-          </div>
-
-          <div className="flex w-[35%] justify-center">
-            <div className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-xl sm:rounded-[3rem]">
+            <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl bg-stone-900 ring-1 ring-white/10 group-hover:ring-yellow-500/30">
               <img
                 src={item.imageUrl}
                 alt={item.name}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
             </div>
+
+            <div className="flex flex-1 flex-col justify-center">
+              <div className="mb-1 flex items-start justify-between gap-4">
+                <h3 className="text-lg font-bold text-white transition-colors group-hover:text-yellow-400">
+                  {item.name}
+                </h3>
+                <span className="text-lg font-serif font-bold text-yellow-500">
+                  {formatCompactPrice(item.price)}k
+                </span>
+              </div>
+              <p className="line-clamp-2 text-xs leading-relaxed text-white/40">
+                {item.description}
+              </p>
+              <div className="mt-3 flex items-center gap-2">
+                <span className="h-px w-6 bg-white/10" />
+                <span className="text-[9px] font-black tracking-widest text-white/20 uppercase group-hover:text-white/40">Details</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="divider-line" />
+        </Tilt3DCard>
       </div>
     );
   };
 
   return (
-    <div className="bg-paper-premium min-h-screen pt-8 pb-20 text-black selection:bg-black selection:text-white sm:pt-20">
-      <div className="mx-auto max-w-4xl px-4 sm:px-8">
-        <header className="mb-12 space-y-2 text-center sm:mb-32 sm:space-y-4">
-          <h1 className="font-cursive py-2 text-6xl leading-none text-black sm:text-[120px]">
-            Azzahra
-          </h1>
-          <div className="brush-banner">
-            <h2 className="text-2xl leading-none font-black tracking-[0.15em] uppercase sm:text-6xl">
-              Food Menu
-            </h2>
+    <div className="min-h-screen bg-[#050505] pb-32 text-white selection:bg-yellow-500 selection:text-black">
+      {/* Premium Header */}
+      <div className="relative overflow-hidden pt-20 pb-16 text-center sm:pt-32 sm:pb-24">
+        {/* Background Gradients */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-red-900/10 blur-[120px]" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        </div>
+
+        <div className="container relative z-10 mx-auto px-6">
+          <button 
+            onClick={onNavigateHome}
+            className="group absolute top-0 left-0 flex items-center gap-2 text-[10px] font-bold tracking-widest text-white/30 uppercase transition-all hover:text-white"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all group-hover:bg-white/10 group-hover:border-white/20">←</span>
+            Back to Site
+          </button>
+
+          <div className="mb-6 flex flex-col items-center">
+            <span className="mb-4 inline-block text-[10px] font-bold tracking-[0.6em] text-yellow-500 uppercase animate-blur-in">
+              The Digital Experience
+            </span>
+            <h1 className="font-serif text-6xl font-bold tracking-tighter text-white sm:text-9xl animate-blur-in delay-100">
+              Katalog <span className="text-white/20 italic">Menu</span>
+            </h1>
           </div>
 
-          <div className="flex flex-col items-center gap-4 pt-8">
-            <div className="flex gap-4">
+          <p className="mx-auto max-w-2xl text-lg text-white/40 animate-blur-in delay-200 leading-relaxed">
+            Pilihlah cita rasa terbaik dari koleksi minuman dan makanan kami yang disiapkan khusus untuk memanjakan lidah Anda.
+          </p>
+
+          <div className="mt-16 flex flex-col items-center gap-8 animate-blur-in delay-300">
+             {/* Filter Tabs */}
+             <div className="flex flex-wrap justify-center gap-2 rounded-2xl bg-white/5 p-1.5 backdrop-blur-xl ring-1 ring-white/10">
               {MENU_FILTERS.map((type) => (
                 <button
                   key={type}
                   onClick={() => setActiveFilter(type)}
-                  className={`border-b-2 pb-1 text-[9px] font-black tracking-[0.3em] uppercase transition-all sm:text-[11px] ${
+                  className={`rounded-xl px-8 py-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${
                     activeFilter === type
-                      ? 'border-black text-black'
-                      : 'border-transparent text-stone-500'
+                      ? 'bg-yellow-500 text-black shadow-[0_10px_25px_-5px_rgba(234,179,8,0.3)]'
+                      : 'text-white/40 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  {type}
+                  {type === 'all' ? 'All Selection' : type === 'beverage' ? 'Coffee & Drinks' : 'Signature Food'}
                 </button>
               ))}
             </div>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="SEARCH MENU..."
-              className="w-full max-w-[200px] border-b-2 border-stone-300 bg-transparent py-2 text-center text-[11px] font-bold tracking-widest text-black uppercase outline-none transition-all focus:border-black sm:text-sm"
-            />
-          </div>
-        </header>
 
-        <div className="space-y-2">
-          {filteredItems.map((item, index) => renderMenuItem(item, index))}
+            {/* Search Bar */}
+            <div className="relative w-full max-w-md">
+              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Cari menu favorit Anda..."
+                className="w-full rounded-2xl border border-white/5 bg-white/5 py-4 pl-14 pr-6 text-sm text-white placeholder-white/20 backdrop-blur-xl transition-all focus:border-yellow-500/30 focus:bg-white/10 focus:outline-none"
+              />
+            </div>
+          </div>
         </div>
+      </div>
 
-        {filteredItems.length === 0 && (
-          <div className="py-24 text-center">
-            <p className="font-cursive text-3xl text-stone-400">
-              Nothing found...
-            </p>
+      {/* Menu Content */}
+      <div className="container mx-auto px-6">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid gap-6 md:grid-cols-2">
+            {filteredItems.map((item, index) => renderMenuItem(item, index))}
           </div>
-        )}
 
-        <footer className="mt-32 space-y-12 border-t-4 border-black pt-12">
-          <div className="grid grid-cols-1 gap-12 text-center md:grid-cols-3 md:text-left">
-            <div>
-              <h4 className="mb-4 text-[10px] font-black tracking-[0.4em] text-stone-400 uppercase">
-                Location
-              </h4>
-              <p className="text-sm leading-tight font-extrabold sm:text-lg">
+          {filteredItems.length === 0 && (
+            <div className="py-32 text-center animate-blur-in">
+              <div className="mb-6 text-6xl opacity-20">☕</div>
+              <h3 className="text-xl font-bold text-white/60">Menu tidak ditemukan</h3>
+              <p className="mt-2 text-white/30 italic">Coba kata kunci pencarian yang lain.</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Footer Section */}
+      <footer className="mt-40 border-t border-white/5 pt-20">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 gap-16 md:grid-cols-3">
+            <div className="space-y-6">
+              <h4 className="text-[10px] font-black tracking-[0.5em] text-yellow-500 uppercase">Outlet Location</h4>
+              <p className="text-lg font-bold text-white/80 leading-relaxed">
                 {SITE_CONFIG.contact.address}
               </p>
             </div>
-            <div>
-              <h4 className="mb-4 text-[10px] font-black tracking-[0.4em] text-stone-400 uppercase">
-                Delivery Order
-              </h4>
-              <p className="text-sm leading-tight font-extrabold sm:text-lg">
-                {SITE_CONFIG.contact.displayPhone}
-              </p>
-              <p className="mt-2 text-[10px] font-bold text-stone-400 italic">
-                Tersedia untuk pesanan online
-              </p>
+            <div className="space-y-6">
+              <h4 className="text-[10px] font-black tracking-[0.5em] text-yellow-500 uppercase">Operating Hours</h4>
+              <div className="space-y-1">
+                <p className="text-lg font-bold text-white/80">{SITE_CONFIG.contact.openingHours}</p>
+                <p className="text-sm text-white/40 font-medium italic">{SITE_CONFIG.contact.openingDays}</p>
+              </div>
             </div>
-            <div>
-              <h4 className="mb-4 text-[10px] font-black tracking-[0.4em] text-stone-400 uppercase">
-                Opening Hours
-              </h4>
-              <p className="text-sm leading-tight font-extrabold sm:text-lg">
-                {SITE_CONFIG.contact.openingHours}
-              </p>
-              <p className="mt-2 text-[10px] font-bold text-stone-400 italic">
-                {SITE_CONFIG.contact.openingDays}
-              </p>
+            <div className="space-y-6 text-center md:text-right">
+              <h4 className="text-[10px] font-black tracking-[0.5em] text-yellow-500 uppercase">Contact Us</h4>
+              <p className="text-2xl font-serif font-bold text-white">{SITE_CONFIG.contact.displayPhone}</p>
+              <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest">{SITE_CONFIG.websiteLabel}</p>
             </div>
           </div>
-
-          <div className="flex flex-col items-center justify-between gap-8 border-t border-stone-200 pt-12 sm:flex-row">
-            <p className="text-[11px] font-black tracking-[0.5em] text-black uppercase sm:text-sm">
-              {SITE_CONFIG.websiteLabel}
+          
+          <div className="mt-20 flex flex-col items-center justify-between border-t border-white/5 pt-12 sm:flex-row">
+            <p className="text-[9px] font-bold tracking-[0.4em] text-white/20 uppercase">
+              &copy; 2026 Warkop Azzahra. All Rights Reserved.
             </p>
-            <button
-              onClick={onNavigateHome}
-              className="rounded-lg bg-stone-900 px-10 py-4 text-[10px] font-black tracking-[0.2em] text-white uppercase shadow-xl transition-all hover:bg-black"
-            >
-              BACK TO WEBSITE
-            </button>
+            <div className="mt-6 flex gap-8 sm:mt-0">
+               <span className="text-[9px] font-bold tracking-[0.4em] text-white/20 uppercase cursor-pointer hover:text-white transition-colors">Privacy Policy</span>
+               <span className="text-[9px] font-bold tracking-[0.4em] text-white/20 uppercase cursor-pointer hover:text-white transition-colors">Terms of Service</span>
+            </div>
           </div>
-        </footer>
-      </div>
+        </div>
+      </footer>
 
       <ProductDetailModal
         item={selectedItem}

@@ -3,7 +3,9 @@ import { useState } from 'react';
 import { SITE_CONFIG } from '../../../config/site';
 
 const Contact = () => {
-  const [selectedOutlet, setSelectedOutlet] = useState(SITE_CONFIG.outlets[0]);
+  const [selectedOutlet, setSelectedOutlet] = useState<(typeof SITE_CONFIG.outlets)[number]>(
+    SITE_CONFIG.outlets[0]
+  );
   const [isCareerModalOpen, setIsCareerModalOpen] = useState(false);
   const [isCareerImageError, setIsCareerImageError] = useState(false);
 
