@@ -118,9 +118,9 @@ const WhatsAppPopup = () => {
           />
 
           {/* Card */}
-          <div className="fixed right-6 bottom-24 z-[101] w-[340px] max-w-[calc(100vw-3rem)] animate-wa-popup overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-[0_30px_80px_-10px_rgba(0,0,0,0.25)]">
+          <div className="fixed right-6 bottom-20 z-[101] w-[310px] max-w-[calc(100vw-3rem)] animate-wa-popup overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-[0_30px_80px_-10px_rgba(0,0,0,0.25)]">
             {/* Header */}
-            <div className="relative bg-gradient-to-r from-green-600 to-green-500 px-6 py-5 text-white">
+            <div className="relative bg-gradient-to-r from-green-600 to-green-500 px-5 py-4 text-white">
               <div className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz48L3N2Zz4=')] opacity-50" />
               <div className="relative flex items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
@@ -139,7 +139,7 @@ const WhatsAppPopup = () => {
             </div>
 
             {/* Chat Bubble */}
-            <div className="bg-stone-50 px-6 py-4">
+            <div className="bg-stone-50 px-5 py-3">
               <div className="inline-block rounded-2xl rounded-tl-none bg-white px-4 py-3 text-sm text-stone-700 shadow-sm">
                 Halo! 👋 Selamat datang di <strong>Warkop Azzahra</strong>. 
                 Silakan pilih topik di bawah atau ketik pesan langsung.
@@ -147,8 +147,8 @@ const WhatsAppPopup = () => {
             </div>
 
             {/* Quick Action Buttons */}
-            <div className="px-4 pb-4">
-              <div className="mb-4 rounded-2xl bg-stone-100 p-3">
+            <div className="px-3.5 pb-3.5">
+              <div className="mb-3 rounded-2xl bg-stone-100 p-2.5">
                 <p className="mb-2 text-[10px] font-bold text-stone-500 uppercase tracking-widest px-1">
                   Pilih Cabang / Outlet
                 </p>
@@ -165,7 +165,7 @@ const WhatsAppPopup = () => {
                 </select>
               </div>
 
-              <p className="mb-3 px-2 text-xs font-bold text-stone-400 uppercase tracking-wider">
+              <p className="mb-2 px-2 text-[10px] font-bold text-stone-400 uppercase tracking-wider">
                 Pilih Topik
               </p>
               <div className="space-y-2">
@@ -173,7 +173,7 @@ const WhatsAppPopup = () => {
                   <button
                     key={msg.id}
                     onClick={() => handleSendMessage(msg.message)}
-                    className="group flex w-full items-center gap-3 rounded-xl border border-stone-100 bg-white px-4 py-3 text-left text-sm font-medium text-stone-700 transition-all duration-300 hover:border-green-200 hover:bg-green-50 hover:shadow-md"
+                    className="group flex w-full items-center gap-3 rounded-xl border border-stone-100 bg-white px-3.5 py-2.5 text-left text-sm font-medium text-stone-700 transition-all duration-300 hover:border-green-200 hover:bg-green-50 hover:shadow-md"
                     style={{ animationDelay: `${index * 80}ms` }}
                   >
                     <span className="text-lg transition-transform duration-300 group-hover:scale-125">

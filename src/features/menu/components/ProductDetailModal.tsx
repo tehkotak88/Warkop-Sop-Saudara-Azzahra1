@@ -7,12 +7,14 @@ interface ProductDetailModalProps {
   item: MenuItem | null;
   isOpen: boolean;
   onClose: () => void;
+  showQrisButton?: boolean;
 }
 
 const ProductDetailModal = ({
   item,
   isOpen,
   onClose,
+  showQrisButton = true,
 }: ProductDetailModalProps) => {
   const [isQrisOpen, setIsQrisOpen] = useState(false);
 
@@ -105,13 +107,15 @@ const ProductDetailModal = ({
 
                 <div className="flex gap-3">
                   {/* Action Buttons */}
-                  <button
-                    type="button"
-                    onClick={() => setIsQrisOpen(true)}
-                    className="flex-1 rounded-xl bg-yellow-500 py-4 text-xs font-bold tracking-[0.1em] text-stone-950 uppercase shadow-lg shadow-yellow-500/20 transition-all hover:bg-yellow-400 active:scale-95"
-                  >
-                    Bayar QRIS
-                  </button>
+                  {showQrisButton && (
+                    <button
+                      type="button"
+                      onClick={() => setIsQrisOpen(true)}
+                      className="flex-1 rounded-xl bg-yellow-500 py-4 text-xs font-bold tracking-[0.1em] text-stone-950 uppercase shadow-lg shadow-yellow-500/20 transition-all hover:bg-yellow-400 active:scale-95"
+                    >
+                      Bayar QRIS
+                    </button>
+                  )}
 
                   <button
                     type="button"

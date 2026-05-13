@@ -203,6 +203,7 @@ const MenuPage = ({ onNavigateHome }: MenuPageProps) => {
         item={selectedItem}
         isOpen={Boolean(selectedItem)}
         onClose={() => setSelectedItem(null)}
+        showQrisButton={false}
       />
     </div>
   );

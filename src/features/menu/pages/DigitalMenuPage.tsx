@@ -152,6 +152,7 @@ const DigitalMenuPage = ({ onNavigateHome }: DigitalMenuPageProps) => {
         item={selectedItem}
         isOpen={Boolean(selectedItem)}
         onClose={() => setSelectedItem(null)}
+        showQrisButton={true}
       />
 
       <QRISPaymentModal

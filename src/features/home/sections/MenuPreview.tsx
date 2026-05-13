@@ -112,6 +112,7 @@ const MenuPreview = () => {
         isOpen={Boolean(selectedItem)}
         item={selectedItem}
         onClose={() => setSelectedItem(null)}
+        showQrisButton={false}
       />
     </section>
   );
