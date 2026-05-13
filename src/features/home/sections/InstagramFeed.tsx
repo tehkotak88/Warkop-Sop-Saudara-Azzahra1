@@ -2,12 +2,12 @@ import { SITE_CONFIG } from '../../../config/site';
 
 const InstagramFeed = () => {
   const posts = [
-    { id: 1, url: '/instagram/feeds1.png', likes: '124', comments: '12', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/reel/DMmgu96pkfa/' },
-    { id: 2, url: '/instagram/feeds2.png', likes: '86', comments: '5', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/reel/DL17EcoPNvK/' },
-    { id: 3, url: '/instagram/feeds3.png', likes: '215', comments: '18', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/reel/DMRSVsXv-Ut/' },
-    { id: 4, url: '/instagram/feeds4.png', likes: '98', comments: '7', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/reel/DUe9FgqD2hA/' },
-    { id: 5, url: '/instagram/feeds5.png', likes: '112', comments: '9', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/reel/DPTm8-pCSH2/' },
-    { id: 6, url: '/instagram/feeds6.png', likes: '74', comments: '4', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/reel/DO7lU3Pj8As/' },
+    { id: 1, url: '/instagram/feeds1.png', likes: '1.2K', comments: '45', type: 'video', link: 'https://www.instagram.com/reel/DMRSVsXv-Ut/' },
+    { id: 2, url: '/instagram/feeds2.png', likes: '860', comments: '24', type: 'video', link: 'https://www.instagram.com/reel/DL17EcoPNvK/' },
+    { id: 3, url: '/instagram/feeds3.png', likes: '1.5K', comments: '56', type: 'video', link: 'https://www.instagram.com/reel/DMmgu96pkfa/' },
+    { id: 4, url: '/instagram/feeds4.png', likes: '3.2K', comments: '89', type: 'video', link: 'https://www.instagram.com/reel/DPTm8-pCSH2/' },
+    { id: 5, url: '/instagram/feeds5.png', likes: '940', comments: '18', type: 'video', link: 'https://www.instagram.com/reel/DO7lU3Pj8As/' },
+    { id: 6, url: '/instagram/feeds6.png', likes: '7.9K', comments: '123', type: 'video', link: 'https://www.instagram.com/reel/DUe9FgqD2hA/' },
   ];
 
   return (
@@ -52,18 +52,26 @@ const InstagramFeed = () => {
               rel="noopener noreferrer"
               className="group relative aspect-square overflow-hidden rounded-[2.5rem] border border-white/5 bg-stone-950 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
             >
-              <img
-                src={post.url}
-                alt={`Instagram post ${post.id}`}
-                className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
-              />
+              {/* Image with Living Animation */}
+              <div className="h-full w-full overflow-hidden">
+                <img
+                  src={post.url}
+                  alt={`Instagram post ${post.id}`}
+                  className="h-full w-full object-cover transition-transform duration-[10000ms] ease-linear group-hover:scale-125"
+                  style={{
+                    animation: 'living-zoom 20s infinite alternate ease-in-out',
+                  }}
+                />
+              </div>
               
               {/* Type Indicator (Video/Reel) */}
               {post.type === 'video' && (
-                <div className="absolute top-4 right-4 z-10 text-white/80 transition-all group-hover:scale-110">
-                   <svg className="h-6 w-6 filter drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                     <path d="M8 5v14l11-7z" />
-                   </svg>
+                <div className="absolute top-6 right-6 z-10 text-white/90">
+                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md ring-1 ring-white/20">
+                     <svg className="h-5 w-5 fill-white" viewBox="0 0 24 24">
+                       <path d="M8 5v14l11-7z" />
+                     </svg>
+                   </div>
                 </div>
               )}
 
@@ -81,7 +89,7 @@ const InstagramFeed = () => {
                 </div>
                 
                 <div className="mt-8 flex items-center gap-2 rounded-full bg-white px-6 py-2 text-[10px] font-black tracking-[0.2em] text-black uppercase transform translate-y-4 transition-all duration-500 group-hover:translate-y-0">
-                   View on IG
+                   View on Instagram
                 </div>
               </div>
             </a>
@@ -92,6 +100,14 @@ const InstagramFeed = () => {
         <div className="pointer-events-none absolute top-1/2 left-0 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-red-600/5 blur-[150px]" />
         <div className="pointer-events-none absolute bottom-0 right-0 translate-x-1/4 h-[600px] w-[600px] rounded-full bg-yellow-600/5 blur-[180px]" />
       </div>
+
+      <style>{`
+        @keyframes living-zoom {
+          0% { transform: scale(1) rotate(0deg); }
+          50% { transform: scale(1.1) rotate(1deg); }
+          100% { transform: scale(1) rotate(0deg); }
+        }
+      `}</style>
     </section>
   );
 };
