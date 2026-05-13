@@ -76,7 +76,7 @@ const MenuPage = ({ onNavigateHome }: MenuPageProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] pb-32 text-white selection:bg-yellow-500 selection:text-black">
+    <div className="min-h-screen bg-red-950 pb-32 text-white selection:bg-yellow-500 selection:text-black">
       {/* Premium Header */}
       <div className="relative overflow-hidden pt-20 pb-16 text-center sm:pt-32 sm:pb-24">
         {/* Background Gradients */}

@@ -45,7 +45,7 @@ const MenuPreview = () => {
     <section 
       id="menu" 
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#080808] py-32 lg:py-48"
+      className="relative overflow-hidden bg-red-950 py-32 lg:py-48"
     >
       {/* Interactive Ambient Light */}
       <div 

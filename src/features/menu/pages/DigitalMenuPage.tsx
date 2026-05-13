@@ -32,7 +32,7 @@ const DigitalMenuPage = ({ onNavigateHome }: DigitalMenuPageProps) => {
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] pb-32 text-white selection:bg-yellow-500 selection:text-black">
+    <div className="min-h-screen bg-red-950 pb-32 text-white selection:bg-yellow-500 selection:text-black">
       {/* Editorial Header */}
       <div className="relative flex min-h-[50vh] flex-col items-center justify-center overflow-hidden px-6 text-center">
         {/* Background Canvas */}
