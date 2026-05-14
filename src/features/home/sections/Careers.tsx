@@ -52,7 +52,7 @@ const Careers = () => {
     const body = jobLabel
       ? `Yth. Tim HRD Warkop Azzahra,\n\nSaya tertarik untuk melamar posisi ${jobLabel} di cabang ${selectedOutlet}.\n\nBerikut saya lampirkan CV saya.\n\nTerima kasih.`
       : `Yth. Tim HRD Warkop Azzahra,\n\nSaya tertarik untuk melamar kerja di cabang ${selectedOutlet}.\n\nBerikut saya lampirkan CV saya.\n\nTerima kasih.`;
-    return `mailto:azzahramaroswarkropdansopsaudar@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=azzahramaroswarkropdansopsaudar@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const handleApplyWhatsApp = (jobTitle?: string) => {
@@ -219,7 +219,7 @@ const Careers = () => {
 
             <div className="mt-8 flex flex-col items-center gap-2 text-sm text-stone-500">
               <p>
-                📧 <a href={getEmailHref()} className="text-yellow-400 hover:text-yellow-300 transition-colors underline underline-offset-2">azzahramaroswarkropdansopsaudar@gmail.com</a>
+                📧 <a href={getEmailHref()} target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 transition-colors underline underline-offset-2">azzahramaroswarkropdansopsaudar@gmail.com</a>
               </p>
               <p>📞 0895404677117 | 085399218530</p>
             </div>
@@ -294,6 +294,8 @@ const Careers = () => {
                 <div className="space-y-3">
                   <a
                     href={getEmailHref(selectedJob ? JOB_POSITIONS.find(j => j.id === selectedJob)?.title : undefined)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-800 to-red-700 px-6 py-3 font-bold text-white transition-all hover:from-red-700 hover:to-red-600"
                   >
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
