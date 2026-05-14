@@ -44,6 +44,17 @@ const Careers = () => {
 
   const [selectedOutlet, setSelectedOutlet] = useState<string>(SITE_CONFIG.outlets[0].name);
 
+  const handleApplyEmail = (jobTitle?: string) => {
+    const jobLabel = jobTitle || (selectedJob ? JOB_POSITIONS.find(j => j.id === selectedJob)?.title : undefined);
+    const subject = jobLabel
+      ? `Lamaran Kerja - Posisi ${jobLabel} (${selectedOutlet})`
+      : `Lamaran Kerja - Warkop Azzahra (${selectedOutlet})`;
+    const body = jobLabel
+      ? `Yth. Tim HRD Warkop Azzahra,\n\nSaya tertarik untuk melamar posisi ${jobLabel} di cabang ${selectedOutlet}.\n\nBerikut saya lampirkan CV saya.\n\nTerima kasih.`
+      : `Yth. Tim HRD Warkop Azzahra,\n\nSaya tertarik untuk melamar kerja di cabang ${selectedOutlet}.\n\nBerikut saya lampirkan CV saya.\n\nTerima kasih.`;
+    window.location.href = `mailto:azzahramaroswarkropdansopsaudar@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   const handleApplyWhatsApp = (jobTitle?: string) => {
     const outlet = SITE_CONFIG.outlets.find(o => o.name === selectedOutlet) || SITE_CONFIG.outlets[0];
     const message = jobTitle
@@ -208,7 +219,7 @@ const Careers = () => {
 
             <div className="mt-8 flex flex-col items-center gap-2 text-sm text-stone-500">
               <p>
-                📧 <a href="mailto:azzahramaroswarkropdansopsaudar@gmail.com" className="text-yellow-400 hover:text-yellow-300 transition-colors">azzahramaroswarkropdansopsaudar@gmail.com</a>
+                📧 <button onClick={() => handleApplyEmail()} className="text-yellow-400 hover:text-yellow-300 transition-colors underline underline-offset-2">azzahramaroswarkropdansopsaudar@gmail.com</button>
               </p>
               <p>📞 0895404677117 | 085399218530</p>
             </div>
@@ -279,17 +290,17 @@ const Careers = () => {
               </div>
 
               <div className="rounded-2xl bg-stone-800/50 p-5">
-                <h4 className="mb-3 text-sm font-bold text-yellow-400 uppercase tracking-wider">Langkah 2: Kirim CV</h4>
+                <h4 className="mb-3 text-sm font-bold text-yellow-400 uppercase tracking-wider">Langkah 3: Kirim CV</h4>
                 <div className="space-y-3">
-                  <a
-                    href="mailto:azzahramaroswarkropdansopsaudar@gmail.com"
+                  <button
+                    onClick={() => handleApplyEmail(selectedJob ? JOB_POSITIONS.find(j => j.id === selectedJob)?.title : undefined)}
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-800 to-red-700 px-6 py-3 font-bold text-white transition-all hover:from-red-700 hover:to-red-600"
                   >
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                     Kirim via Email
-                  </a>
+                  </button>
                   <button
                     onClick={() => handleApplyWhatsApp(selectedJob ? JOB_POSITIONS.find(j => j.id === selectedJob)?.title : undefined)}
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-6 py-3 font-bold text-white transition-all hover:bg-green-500"
