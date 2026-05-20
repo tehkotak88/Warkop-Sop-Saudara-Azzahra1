@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { SITE_CONFIG } from '../../../config/site';
 
 interface QRISPaymentModalProps {
@@ -8,14 +9,18 @@ interface QRISPaymentModalProps {
 }
 
 const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentModalProps) => {
+  const [selectedOutlet, setSelectedOutlet] = useState<string>(SITE_CONFIG.outlets[0].name);
+
   if (!isOpen) return null;
+
+  const outlet = SITE_CONFIG.outlets.find((outlet) => outlet.name === selectedOutlet) || SITE_CONFIG.outlets[0];
 
   const handleWhatsAppConfirm = () => {
     let message = 'Halo, saya sudah melakukan pembayaran via QRIS.';
     if (itemName) {
       message = `Halo, saya memesan ${itemName}${itemPrice ? ` (Rp ${itemPrice.toLocaleString('id-ID')})` : ''} dan sudah melakukan pembayaran via QRIS.`;
     }
-    const whatsappUrl = `https://wa.me/${SITE_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${outlet.whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -37,8 +42,8 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
         </div>
 
         {/* QRIS Content */}
-        <div className="p-8 flex flex-col items-center">
-          <div className="relative mb-6 flex aspect-square w-full max-w-[240px] items-center justify-center overflow-hidden rounded-2xl bg-white p-2 shadow-inner">
+        <div className="p-8 flex flex-col items-center gap-6">
+          <div className="relative mb-1 flex aspect-square w-full max-w-[240px] items-center justify-center overflow-hidden rounded-2xl bg-white p-2 shadow-inner">
             <img 
               src="/qr/qiris paymen.jpeg" 
               alt="QRIS Warkop Azzahra" 
@@ -49,10 +54,31 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
             />
           </div>
 
-          <div className="w-full space-y-3 rounded-xl bg-stone-800/30 p-4 text-center">
+          <div className="w-full rounded-xl bg-stone-800/30 p-4 text-center border border-stone-700">
             <p className="text-[10px] font-bold uppercase tracking-widest text-stone-500">Merchant</p>
             <p className="text-lg font-bold text-white">ROTI MARUS AZZAHRA</p>
             <p className="text-xs text-yellow-500 font-mono">NMID: ID1026484769280</p>
+          </div>
+
+          <div className="w-full rounded-3xl border border-stone-800 bg-stone-900/90 p-5 text-left">
+            <label className="mb-2 block text-[10px] font-black uppercase tracking-[0.3em] text-stone-500">Pilih Outlet untuk Konfirmasi WA</label>
+            <select
+              value={selectedOutlet}
+              onChange={(e) => setSelectedOutlet(e.target.value)}
+              className="w-full rounded-2xl border border-white/10 bg-stone-950/80 px-4 py-3 text-sm text-white outline-none transition-all focus:border-yellow-500"
+            >
+              {SITE_CONFIG.outlets.map((outlet) => (
+                <option key={outlet.name} value={outlet.name} className="bg-stone-950 text-white">
+                  {outlet.name} — {outlet.phone}
+                </option>
+              ))}
+            </select>
+
+            <div className="mt-4 space-y-3 rounded-2xl bg-stone-800/50 p-4 text-sm text-white/80">
+              <p className="text-xs uppercase tracking-[0.3em] text-stone-500">Nomor outlet aktif</p>
+              <p className="font-semibold text-white">{outlet.name}</p>
+              <p>{outlet.phone}</p>
+            </div>
           </div>
         </div>
 
@@ -62,7 +88,7 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
             onClick={handleWhatsAppConfirm}
             className="w-full rounded-xl bg-yellow-500 py-4 text-xs font-bold tracking-[0.2em] text-stone-950 uppercase shadow-lg shadow-yellow-500/20 transition-all hover:bg-yellow-400 active:scale-95"
           >
-            Konfirmasi ke WhatsApp
+            Konfirmasi ke WhatsApp Outlet
           </button>
           
           <button
