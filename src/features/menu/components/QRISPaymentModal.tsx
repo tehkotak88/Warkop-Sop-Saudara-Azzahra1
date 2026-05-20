@@ -93,7 +93,7 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
           
           <button
             onClick={onClose}
-            className="w-full rounded-xl border border-stone-700 bg-transparent py-4 text-xs font-bold tracking-[0.2em] text-stone-400 uppercase transition-all hover:bg-stone-800 hover:text-white active:scale-95"
+            className="w-full rounded-xl border border-yellow-500/40 bg-stone-800/80 py-3 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-sm shadow-yellow-500/10 transition-all hover:bg-stone-700 hover:text-white active:scale-95"
           >
             Tutup
           </button>
