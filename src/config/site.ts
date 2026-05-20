@@ -6,8 +6,8 @@ export const SITE_CONFIG = {
     menu: 'Menu Digital | Warkop Azzahra',
   },
   contact: {
-    whatsappNumber: '6285256669994',
-    displayPhone: '+62 852-5666-9994',
+    whatsappNumber: '62882021250098',
+    displayPhone: '+62 882-0212-50098',
     whatsappMessage:
       'Halo Warkop Azzahra, saya ingin bertanya mengenai menu dan pemesanan.',
     instagramUrl: 'https://www.instagram.com/warkopsop_azzahra/',
