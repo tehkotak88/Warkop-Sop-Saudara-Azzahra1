@@ -91,10 +91,10 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
             Konfirmasi ke WhatsApp Outlet
           </button>
           
-          <div className="mt-3 flex justify-center">
+          <div className="mt-3">
             <button
               onClick={onClose}
-              className="mx-auto w-full max-w-[180px] rounded-2xl border border-yellow-500/50 bg-stone-800/90 py-2.5 text-[10px] font-black tracking-[0.3em] text-white uppercase shadow-sm shadow-yellow-500/10 transition-all hover:bg-stone-700 active:scale-95"
+              className="w-full rounded-2xl border border-yellow-500/50 bg-stone-800/90 py-4 text-xs font-black tracking-[0.2em] text-white uppercase shadow-sm shadow-yellow-500/10 transition-all hover:bg-stone-700 active:scale-95"
             >
               Tutup
             </button>
