@@ -334,7 +334,7 @@ export const PROMOTIONS_LIST: Promotion[] = [
   },
   {
     id: 2,
-    title: 'Coffee Lovers',
+    title: 'Signature Minuman Lovers',
     description: 'Caramel Priline Machiatto, Hazelnut Latte, dan Vanilla Latte favorit pelanggan!',
     imageUrl: '/asset/minuman/Caramel Priline Machiatto.PNG',
   }

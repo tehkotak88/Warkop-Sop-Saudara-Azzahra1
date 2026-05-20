@@ -95,7 +95,7 @@ const MenuPreview = () => {
                           : 'text-white/40 hover:text-white'
                       }`}
                     >
-                      {type === 'beverage' ? 'Coffee' : 'Signature Food'}
+                      {type === 'beverage' ? 'Signature Minuman' : 'Signature Food'}
                     </button>
                   ))}
                 </div>

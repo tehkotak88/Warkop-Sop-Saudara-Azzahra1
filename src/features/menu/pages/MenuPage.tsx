@@ -120,7 +120,7 @@ const MenuPage = ({ onNavigateHome }: MenuPageProps) => {
                       : 'text-white/40 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  {type === 'all' ? 'All Selection' : type === 'beverage' ? 'Coffee & Drinks' : 'Signature Food'}
+                  {type === 'all' ? 'All Selection' : type === 'beverage' ? 'Signature Minuman' : 'Signature Food'}
                 </button>
               ))}
             </div>
