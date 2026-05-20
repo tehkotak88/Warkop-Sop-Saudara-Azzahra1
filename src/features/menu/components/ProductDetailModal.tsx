@@ -48,7 +48,7 @@ const ProductDetailModal = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Image */}
-            <div className="relative aspect-square overflow-hidden md:rounded-l-2xl">
+            <div className="relative min-h-[420px] overflow-hidden md:rounded-l-2xl">
               <img
                 src={item.imageUrl}
                 alt={item.name}
