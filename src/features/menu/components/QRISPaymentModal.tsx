@@ -31,7 +31,7 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
       style={{ animation: 'fadeIn 0.3s ease' }}
     >
       <div
-        className="relative w-full max-w-md overflow-hidden rounded-3xl border border-stone-800 bg-stone-900 shadow-2xl shadow-yellow-500/10"
+        className="relative w-full max-w-[420px] max-h-[85vh] overflow-y-auto rounded-3xl border border-stone-800 bg-stone-900 shadow-2xl shadow-yellow-500/10"
         onClick={(e) => e.stopPropagation()}
         style={{ animation: 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}
       >
@@ -106,3 +106,4 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
 };
 
 export default QRISPaymentModal;
+
