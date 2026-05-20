@@ -83,20 +83,22 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
         </div>
 
         {/* Footer Actions */}
-        <div className="bg-stone-950/50 p-6 space-y-3 border-t border-stone-800">
+        <div className="bg-stone-950/50 p-6 border-t border-stone-800">
           <button
             onClick={handleWhatsAppConfirm}
-            className="w-full rounded-xl bg-yellow-500 py-4 text-xs font-bold tracking-[0.2em] text-stone-950 uppercase shadow-lg shadow-yellow-500/20 transition-all hover:bg-yellow-400 active:scale-95"
+            className="w-full rounded-2xl bg-yellow-500 py-4 text-xs font-bold tracking-[0.2em] text-stone-950 uppercase shadow-lg shadow-yellow-500/20 transition-all hover:bg-yellow-400 active:scale-95"
           >
             Konfirmasi ke WhatsApp Outlet
           </button>
           
-          <button
-            onClick={onClose}
-            className="w-full rounded-xl border border-yellow-500/40 bg-stone-800/80 py-3 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-sm shadow-yellow-500/10 transition-all hover:bg-stone-700 hover:text-white active:scale-95"
-          >
-            Tutup
-          </button>
+          <div className="mt-3 flex justify-center">
+            <button
+              onClick={onClose}
+              className="mx-auto w-full max-w-[180px] rounded-2xl border border-yellow-500/50 bg-stone-800/90 py-2.5 text-[10px] font-black tracking-[0.3em] text-white uppercase shadow-sm shadow-yellow-500/10 transition-all hover:bg-stone-700 active:scale-95"
+            >
+              Tutup
+            </button>
+          </div>
         </div>
       </div>
     </div>
