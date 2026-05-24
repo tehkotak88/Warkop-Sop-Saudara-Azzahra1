@@ -55,8 +55,7 @@ const DigitalMenuPage = ({ onNavigateHome }: DigitalMenuPageProps) => {
             Azzahra Digital
           </span>
           <h1 className="font-serif text-7xl font-bold leading-[0.8] tracking-tighter text-white sm:text-9xl">
-            MENU <br />
-            <span className="text-white/10 italic">CATALOGUE</span>
+            MENU
           </h1>
           <div className="mx-auto mt-12 h-px w-24 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
         </div>
@@ -131,7 +130,7 @@ const DigitalMenuPage = ({ onNavigateHome }: DigitalMenuPageProps) => {
 
         {filteredItems.length === 0 && (
           <div className="py-32 text-center animate-blur-in">
-            <p className="font-serif text-2xl text-white/10 italic">Catalogue currently empty...</p>
+            <p className="font-serif text-2xl text-white/10 italic">Menu currently empty...</p>
           </div>
         )}
 
