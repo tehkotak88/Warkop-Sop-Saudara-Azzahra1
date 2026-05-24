@@ -23,14 +23,15 @@ const Reservation = () => {
 
     const selectedOutlet = SITE_CONFIG.outlets.find(o => o.name === formData.outlet) || SITE_CONFIG.outlets[0];
 
-    const message = `🍽️ *RESERVASI TEMPAT - Warkop Azzahra*\n\n`
-      + `📍 Outlet: ${formData.outlet}\n`
-      + `👤 Nama: ${formData.name}\n`
-      + `📱 No. HP: ${formData.phone}\n`
-      + `📅 Tanggal: ${formData.date}\n`
-      + `🕐 Jam: ${formData.time}\n`
-      + `👥 Jumlah Tamu: ${formData.guests} orang\n`
-      + `📝 Catatan: ${formData.notes || '-'}\n\n`
+    const message = `*🍽️ RESERVASI TEMPAT*\n*Warkop Azzahra*\n\n━━━━━━━━━━━━━━━━━━\n`
+      + `📍 *Outlet:* ${formData.outlet}\n`
+      + `👤 *Nama:* ${formData.name}\n`
+      + `📱 *No. HP:* ${formData.phone}\n`
+      + `📅 *Tanggal:* ${formData.date}\n`
+      + `🕐 *Jam:* ${formData.time}\n`
+      + `👥 *Jumlah Tamu:* ${formData.guests} orang\n`
+      + `📝 *Catatan:* ${formData.notes || '-'}\n`
+      + `━━━━━━━━━━━━━━━━━━\n\n`
       + `Mohon konfirmasi ketersediaan tempat. Terima kasih! 🙏`;
 
     const url = `https://wa.me/${selectedOutlet.whatsappNumber}?text=${encodeURIComponent(message)}`;
