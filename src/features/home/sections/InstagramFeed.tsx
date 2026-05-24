@@ -1,6 +1,10 @@
 import { SITE_CONFIG } from '../../../config/site';
 
 const InstagramFeed = () => {
+  const emojiStyle = {
+    fontFamily: 'Apple Color Emoji, "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
+  } as const;
+
   const posts = [
     // feeds1 = "Sedekah Tiap Jumat" reel (27 Jul 2025) → Post #1 on IG grid
     { id: 1, url: '/instagram/feeds1.png', likes: '86', comments: '5', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
@@ -85,11 +89,11 @@ const InstagramFeed = () => {
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 backdrop-blur-[2px] transition-all duration-500 group-hover:opacity-100">
                 <div className="flex items-center gap-10 text-white scale-90 transition-transform duration-500 group-hover:scale-100">
                   <div className="flex flex-col items-center gap-2">
-                    <span className="text-3xl filter drop-shadow-lg">❤️</span>
+                    <span className="text-3xl filter drop-shadow-lg" style={emojiStyle}>❤️</span>
                     <span className="text-sm font-black tracking-widest">{post.likes}</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
-                    <span className="text-3xl filter drop-shadow-lg">💬</span>
+                    <span className="text-3xl filter drop-shadow-lg" style={emojiStyle}>💬</span>
                     <span className="text-sm font-black tracking-widest">{post.comments}</span>
                   </div>
                 </div>

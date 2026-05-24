@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 
 import { SITE_CONFIG } from '../../config/site';
 
@@ -22,7 +22,7 @@ const WhatsAppPopup = () => {
   const quickMessages = [
     {
       id: 'menu',
-      icon: '�',
+      icon: '📝',
       label: 'Tanya Menu',
       message: 'Halo Warkop Azzahra! Saya ingin menanyakan menu yang tersedia hari ini.',
     },
@@ -85,7 +85,7 @@ const WhatsAppPopup = () => {
         {/* Tooltip */}
         {!isOpen && (
           <div className="absolute bottom-full right-0 mb-3 whitespace-nowrap rounded-xl bg-stone-900 px-4 py-2 text-sm font-medium text-white shadow-xl animate-wa-tooltip">
-            <span>Ada yang bisa kami bantu? 👋</span>
+            <span>Ada yang bisa kami bantu? <span style={emojiStyle}>👋</span></span>
             <div className="absolute -bottom-1 right-6 h-2 w-2 rotate-45 bg-stone-900" />
           </div>
         )}
@@ -145,7 +145,7 @@ const WhatsAppPopup = () => {
             {/* Chat Bubble */}
             <div className="bg-stone-50 px-5 py-3">
               <div className="inline-block rounded-2xl rounded-tl-none bg-white px-4 py-3 text-sm text-stone-700 shadow-sm">
-                Halo! 👋 Selamat datang di <strong>Warkop Azzahra</strong>. 
+                Halo! <span style={emojiStyle}>👋</span> Selamat datang di <strong>Warkop Azzahra</strong>. 
                 Silakan pilih topik di bawah atau ketik pesan langsung.
               </div>
             </div>
@@ -199,7 +199,7 @@ const WhatsAppPopup = () => {
               {/* Phone info */}
               <div className="mt-4 text-center text-xs text-stone-400">
                 <p>
-                  📞 {SITE_CONFIG.contact.displayPhone}
+                  <span style={emojiStyle}>📞</span> {SITE_CONFIG.contact.displayPhone}
                 </p>
               </div>
             </div>
@@ -242,3 +242,4 @@ const WhatsAppPopup = () => {
 };
 
 export default WhatsAppPopup;
+

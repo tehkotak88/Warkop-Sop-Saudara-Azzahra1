@@ -6,6 +6,10 @@ const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isVisible = useRevealOnIntersect(sectionRef);
 
+  const emojiStyle = {
+    fontFamily: 'Apple Color Emoji, "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
+  } as const;
+
   const stats = [
     { number: '2024', label: 'Established' },
     { number: '50+', label: 'Menu Pilihan' },
@@ -135,7 +139,9 @@ const About = () => {
                 {process.step}
               </span>
 
-              <div className="relative mb-6 text-4xl">{process.icon}</div>
+              <div className="relative mb-6 text-4xl">
+                <span style={emojiStyle}>{process.icon}</span>
+              </div>
 
               <h4 className="relative mb-3 font-serif text-xl font-bold text-white">
                 {process.title}
