@@ -22,13 +22,13 @@ const WhatsAppPopup = () => {
   const quickMessages = [
     {
       id: 'menu',
-      icon: '📋',
+      icon: '�',
       label: 'Tanya Menu',
       message: 'Halo Warkop Azzahra! Saya ingin menanyakan menu yang tersedia hari ini.',
     },
     {
       id: 'order',
-      icon: '🛒',
+      icon: '🍽️',
       label: 'Pesan Makanan',
       message: 'Halo, saya ingin memesan makanan/minuman dari Warkop Azzahra.',
     },
@@ -53,6 +53,10 @@ const WhatsAppPopup = () => {
   ];
 
   const [selectedOutlet, setSelectedOutlet] = useState<string>(SITE_CONFIG.outlets[0].name);
+
+  const emojiStyle = {
+    fontFamily: 'Apple Color Emoji, "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
+  } as const;
 
   const handleSendMessage = (message: string) => {
     const outlet = SITE_CONFIG.outlets.find(o => o.name === selectedOutlet) || SITE_CONFIG.outlets[0];
@@ -176,7 +180,7 @@ const WhatsAppPopup = () => {
                     className="group flex w-full items-center gap-3 rounded-xl border border-stone-100 bg-white px-3.5 py-2.5 text-left text-sm font-medium text-stone-700 transition-all duration-300 hover:border-green-200 hover:bg-green-50 hover:shadow-md"
                     style={{ animationDelay: `${index * 80}ms` }}
                   >
-                    <span className="text-lg transition-transform duration-300 group-hover:scale-125">
+                    <span className="text-lg transition-transform duration-300 group-hover:scale-125" style={emojiStyle}>
                       {msg.icon}
                     </span>
                     <span className="flex-1">{msg.label}</span>
