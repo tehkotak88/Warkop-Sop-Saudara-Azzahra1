@@ -12,6 +12,8 @@ const InstagramFeed = () => {
     { id: 2, url: '/instagram/feeds2.png', likes: '303', comments: '10', type: 'video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
     // feeds3 = "Minza mau buat minuman baru" red cup PHOTO (23 Ags 2025) → Post #3 — this is a PHOTO
     { id: 3, url: '/instagram/feeds3.png', likes: '303', comments: '1', type: 'photo', link: 'https://www.instagram.com/warkopsop_azzahra/' },
+    // feeds_video = Animated GIF video feeds converted from MP4
+    { id: 7, url: '/instagram/feeds_video.gif', likes: '156', comments: '42', type: 'video-gif', link: 'https://www.instagram.com/warkopsop_azzahra/', title: 'Moment Azzahra' },
     // feeds6 = "Singgah Belanja Roti Maros" reel (ngemil_lucu) → Post #4 — 7.9K likes
     { id: 4, url: '/instagram/feeds6.png', likes: '7.9K', comments: '123', type: 'video', link: 'https://www.instagram.com/reel/DUe9FgqD2hA/' },
     // feeds5 = "Pelayanan ramah" jersey collab reel (mbmproductionn, 2 Okt 2025) → Post #5
@@ -74,13 +76,17 @@ const InstagramFeed = () => {
                 />
               </div>
               
-              {/* Type Indicator (Video/Reel) */}
-              {post.type === 'video' && (
+              {/* Type Indicator (Video/Reel/GIF) */}
+              {(post.type === 'video' || post.type === 'video-gif') && (
                 <div className="absolute top-6 right-6 z-10 text-white/90">
                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md ring-1 ring-white/20">
-                     <svg className="h-5 w-5 fill-white" viewBox="0 0 24 24">
-                       <path d="M8 5v14l11-7z" />
-                     </svg>
+                     {post.type === 'video-gif' ? (
+                       <span className="text-[10px] font-black tracking-widest">GIF</span>
+                     ) : (
+                       <svg className="h-5 w-5 fill-white" viewBox="0 0 24 24">
+                         <path d="M8 5v14l11-7z" />
+                       </svg>
+                     )}
                    </div>
                 </div>
               )}
