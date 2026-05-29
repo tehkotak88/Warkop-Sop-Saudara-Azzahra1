@@ -7,17 +7,17 @@ const InstagramFeed = () => {
 
   const posts = [
     // feeds1 = "Sedekah Tiap Jumat" reel (27 Jul 2025) → Post #1 on IG grid
-    { id: 1, url: '/instagram/feeds1.png', likes: '86', comments: '5', type: 'photo', link: 'https://www.instagram.com/warkopsop_azzahra/' },
+    { id: 1, videoUrl: '/instagram/feeds1.mp4', posterUrl: '/instagram/feeds1.png', likes: '86', comments: '5', type: 'autoplay-video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
     // feeds2 = "Masih Pagi Udah Rame" interior reel (ngemil_lucu, 19 Jul 2025) → Post #2
-    { id: 2, url: '/instagram/feeds2.png', likes: '303', comments: '10', type: 'photo', link: 'https://www.instagram.com/warkopsop_azzahra/' },
-    // feeds_video = Autoplay MP4 video from Azzahra moments
-    { id: 3, videoUrl: '/instagram/feeds video.mp4', posterUrl: '/instagram/feeds3.png', likes: '156', comments: '42', type: 'autoplay-video', link: 'https://www.instagram.com/warkopsop_azzahra/', title: 'Moment Azzahra' },
-    // feeds6 = "Singgah Belanja Roti Maros" reel (ngemil_lucu) → Post #4 — 7.9K likes
-    { id: 4, videoUrl: '/instagram/feeds 6.mp4', posterUrl: '/instagram/feeds6.png', likes: '7.9K', comments: '123', type: 'autoplay-video', link: 'https://www.instagram.com/reel/DUe9FgqD2hA/' },
+    { id: 2, videoUrl: '/instagram/feeds2.mp4', posterUrl: '/instagram/feeds2.png', likes: '303', comments: '10', type: 'autoplay-video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
+    // feeds3 = "Minza mau buat minuman baru" red cup PHOTO (23 Ags 2025) → Post #3 — this is a PHOTO
+    { id: 3, url: '/instagram/feeds3.png', likes: '303', comments: '1', type: 'photo', link: 'https://www.instagram.com/warkopsop_azzahra/' },
+    // feeds4 = "Matcha series" reel (warkopsop_azzahra, 23 Sep 2025) → Post #4
+    { id: 4, videoUrl: '/instagram/feeds4.mp4', posterUrl: '/instagram/feeds4.png', likes: '26', comments: '1', type: 'autoplay-video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
     // feeds5 = "Pelayanan ramah" jersey collab reel (mbmproductionn, 2 Okt 2025) → Post #5
     { id: 5, videoUrl: '/instagram/feeds 5.mp4', posterUrl: '/instagram/feeds5.png', likes: '56', comments: '0', type: 'autoplay-video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
-    // feeds4 = "Matcha series" reel (warkopsop_azzahra, 23 Sep 2025) → Post #6
-    { id: 6, url: '/instagram/feeds4.png', likes: '26', comments: '1', type: 'photo', link: 'https://www.instagram.com/warkopsop_azzahra/' },
+    // feeds6 = "Singgah Belanja Roti Maros" reel (ngemil_lucu) → Post #6 — 7.9K likes
+    { id: 6, videoUrl: '/instagram/feeds 6.mp4', posterUrl: '/instagram/feeds6.png', likes: '7.9K', comments: '123', type: 'autoplay-video', link: 'https://www.instagram.com/reel/DUe9FgqD2hA/' },
   ];
 
   return (
