@@ -113,16 +113,7 @@ const InstagramFeed = () => {
                 )}
               </div>
               
-              {/* Type Indicator (Video/Photo) */}
-              {post.type === 'autoplay-video' && (
-                <div className="absolute top-6 right-6 z-10 text-white/90">
-                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md ring-1 ring-white/20">
-                     <svg className="h-5 w-5 fill-white" viewBox="0 0 24 24">
-                       <path d="M8 5v14l11-7z" />
-                     </svg>
-                   </div>
-                </div>
-              )}
+
 
               {/* Cinematic Overlay */}
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 backdrop-blur-[2px] transition-all duration-500 group-hover:opacity-100">
