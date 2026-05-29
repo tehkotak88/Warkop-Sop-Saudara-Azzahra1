@@ -1,9 +1,20 @@
+import { useEffect } from 'react';
 import { SITE_CONFIG } from '../../../config/site';
 
 const InstagramFeed = () => {
   const emojiStyle = {
     fontFamily: 'Apple Color Emoji, "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
   } as const;
+
+  useEffect(() => {
+    const videos = document.querySelectorAll<HTMLVideoElement>('video[data-autoplay]');
+    videos.forEach((video) => {
+      video.muted = true;
+      video.play().catch(() => {
+        // autoplay may be blocked until user interaction in some browsers
+      });
+    });
+  }, []);
 
   const posts = [
     // feeds1 = "Sedekah Tiap Jumat" reel (27 Jul 2025) → Post #1 on IG grid
@@ -15,9 +26,9 @@ const InstagramFeed = () => {
     // feeds4 = "Matcha series" reel (warkopsop_azzahra, 23 Sep 2025) → Post #4
     { id: 4, videoUrl: '/instagram/feeds4.mp4', posterUrl: '/instagram/feeds4.png', likes: '26', comments: '1', type: 'autoplay-video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
     // feeds5 = "Pelayanan ramah" jersey collab reel (mbmproductionn, 2 Okt 2025) → Post #5
-    { id: 5, videoUrl: '/instagram/feeds 5.mp4', posterUrl: '/instagram/feeds5.png', likes: '56', comments: '0', type: 'autoplay-video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
+    { id: 5, videoUrl: '/instagram/feeds5.mp4', posterUrl: '/instagram/feeds5.png', likes: '56', comments: '0', type: 'autoplay-video', link: 'https://www.instagram.com/warkopsop_azzahra/' },
     // feeds6 = "Singgah Belanja Roti Maros" reel (ngemil_lucu) → Post #6 — 7.9K likes
-    { id: 6, videoUrl: '/instagram/feeds 6.mp4', posterUrl: '/instagram/feeds6.png', likes: '7.9K', comments: '123', type: 'autoplay-video', link: 'https://www.instagram.com/reel/DUe9FgqD2hA/' },
+    { id: 6, videoUrl: '/instagram/feeds6.mp4', posterUrl: '/instagram/feeds6.png', likes: '7.9K', comments: '123', type: 'autoplay-video', link: 'https://www.instagram.com/reel/DUe9FgqD2hA/' },
   ];
 
   return (
@@ -70,6 +81,8 @@ const InstagramFeed = () => {
                     muted
                     loop
                     playsInline
+                    preload="auto"
+                    data-autoplay
                     poster={post.posterUrl}
                     className="h-full w-full object-cover transition-transform duration-[10000ms] ease-linear group-hover:scale-125"
                   >
