@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { SITE_CONFIG } from '../../../config/site';
 
 const InstagramFeed = () => {
@@ -6,15 +5,29 @@ const InstagramFeed = () => {
     fontFamily: 'Apple Color Emoji, "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
   } as const;
 
-  useEffect(() => {
-    const videos = document.querySelectorAll<HTMLVideoElement>('video[data-autoplay]');
-    videos.forEach((video) => {
-      video.muted = true;
-      video.play().catch(() => {
-        // autoplay may be blocked until user interaction in some browsers
-      });
-    });
-  }, []);
+  const initAutoplayVideo = (video: HTMLVideoElement | null) => {
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+
+    const start = () => {
+      const promise = video.play();
+      if (promise && typeof promise.catch === 'function') {
+        promise.catch(() => {
+          // Autoplay may still be blocked on some devices until user interaction
+        });
+      }
+    };
+
+    if (video.readyState >= 3) {
+      start();
+      return;
+    }
+
+    video.addEventListener('canplay', start, { once: true });
+  };
 
   const posts = [
     // feeds1 = "Sedekah Tiap Jumat" reel (27 Jul 2025) → Post #1 on IG grid
@@ -77,12 +90,12 @@ const InstagramFeed = () => {
               <div className="h-full w-full overflow-hidden">
                 {post.type === 'autoplay-video' ? (
                   <video
+                    ref={(el) => initAutoplayVideo(el)}
                     autoPlay
                     muted
                     loop
                     playsInline
                     preload="auto"
-                    data-autoplay
                     poster={post.posterUrl}
                     className="h-full w-full object-cover transition-transform duration-[10000ms] ease-linear group-hover:scale-125"
                   >
