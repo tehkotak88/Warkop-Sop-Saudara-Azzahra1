@@ -45,8 +45,8 @@ const QRISPaymentModal = ({ isOpen, onClose, itemName, itemPrice }: QRISPaymentM
         <div className="p-8 flex flex-col items-center gap-6">
           <div className="relative mb-1 flex aspect-square w-full max-w-[240px] items-center justify-center overflow-hidden rounded-2xl bg-white p-2 shadow-inner">
             <img 
-              src="/qr/qiris paymen.jpeg" 
-              alt="QRIS Warkop Azzahra" 
+              src={outlet.qrisImageUrl} 
+              alt={`QRIS ${outlet.name}`} 
               className="h-full w-full object-contain"
               onError={(e) => {
                 e.currentTarget.src = 'https://via.placeholder.com/400x400.png?text=QRIS+Not+Found';
